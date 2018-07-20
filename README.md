@@ -38,4 +38,22 @@ Calls available so far:
   - POST {site}/backpropagation/run = runs the trained neural network and returns the result
 <br>It should pass the created network in the JSON that is returned from POST {site}/backpropagation, modifying only the data inside of the input.
 
-Working on implementing calls for various methods of solving Travelling Salesman as well as others
+<b>Traveling Salesman Problem:</b> <i>source: </i>[Traveling Salesman](https://github.com/tha7556/Traveling-Salesman-Problem "Traveling Salesman Source")
+<br/>Each of these take an array of cities as a parameter. The format is shown below in a JSON
+<br/><i>(You should use more than 2 cities if you want it to do anything)</i>
+```
+[
+    {
+      "x": 10,
+      "y": 11,
+      "name": "A"
+    },
+    {
+      "x": 15,
+      "y": 12,
+      "name": "B"
+   }
+]
+```
+   - POST {site}/salesman/genetic/ = Returns the shortest route between all cities, calculated with a genetic algorithm
+   - POST {site}/salesman/annealing/ = Returns the shortest route between all cities, calculated with Simulated Annealing
