@@ -3,13 +3,14 @@ A REST API to access and run some of my previous Java projects
 
 Calls available so far:
 
-Markov Chains:
+<b>Markov Chains:</b>
 <br/>GET {site}/markov/{user} = Gets a tweet generated based off of the user
 <br/>GET {site}/markov/{user}/{quantity} = Gets {quantity} tweets generated based off of the user
 
-Backpropagation:
-<br/>POST {site}/backpropagation/ = Gets a neural network trained from backpropagation.
+<b>Backpropagation:</b>
+  - POST {site}/backpropagation/ = Gets a neural network trained from backpropagation.
 <br/>It should pass a JSON object in this form:
+<br/><i>ex) A XOR network</i>
 ```JSON
 {
    "input": [
@@ -33,7 +34,7 @@ Backpropagation:
 <br/>numHidden: The number of hidden nodes to have
 <br/>targetError: The target error to train to
 
-<br/>POST {site}/backpropagation/run = runs the trained neural network and returns the result
+  - POST {site}/backpropagation/run = runs the trained neural network and returns the result
 <br>It should pass the created network in the JSON that is returned from POST {site}/backpropagation, modifying only the data inside of the input.
 
 Working on implementing calls for various methods of solving Travelling Salesman as well as others
