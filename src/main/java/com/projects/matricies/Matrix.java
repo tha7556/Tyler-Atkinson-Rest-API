@@ -30,6 +30,11 @@ public class Matrix {
 			}
 		}
 	}
+
+	public double[][] getMatrix() {
+		return matrix;
+	}
+
 	/**
 	 * Gets an array of the desired row
 	 * @param index The index of the row
