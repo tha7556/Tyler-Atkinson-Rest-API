@@ -1,5 +1,7 @@
 package com.projects.markov.TweetGenerator;
 
+import twitter4j.TwitterException;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -181,7 +183,7 @@ public class TweetChain {
 		}
 		pWriter.close();
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws TwitterException {
 		//Nifty tweeters: DylDTM manacurves ColIegeStudent abominable_andy
 		TweetDictionary dict = new TweetDictionary("realDonaldTrump");
 		TweetChain chain = new TweetChain(dict);

@@ -6,7 +6,7 @@ import twitter4j.conf.*;
 public class TweetDictionary {
 	private String twitterHandle;
 	private ArrayList<String> tweets;
-	public TweetDictionary(String twitterHandle) {
+	public TweetDictionary(String twitterHandle) throws TwitterException {
 		tweets = TweetDictionary.getAllTweetsFrom(twitterHandle);
 		this.twitterHandle = twitterHandle;
 	}
@@ -53,8 +53,7 @@ public class TweetDictionary {
 		}
 		return text.trim();
 	}
-	public static ArrayList<String> getAllTweetsFrom(String twitterHandle) {
-		System.out.println("Gathering tweets from: "+twitterHandle+"...");
+	public static ArrayList<String> getAllTweetsFrom(String twitterHandle) throws TwitterException{
 		ArrayList<String> result = new ArrayList<String>();
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setOAuthConsumerKey("NkHd3jqeKSSf4zYXvlCmxSvQh");
@@ -66,27 +65,21 @@ public class TweetDictionary {
 	    Twitter twitter = new TwitterFactory(cb.build()).getInstance();
 		int pageno = 1;		
 		while(true) {
-			try {
-				int size = result.size();
-				Paging page = new Paging(pageno++, 100);
-				for(Status status : twitter.getUserTimeline(twitterHandle, page)) {
-					if(!status.isRetweet() && !status.isTruncated()) {
-						String tweet = formatTweetToString(status.getText());
-						if(tweet.length() > 0)
-							result.add(tweet);
-					}
+			int size = result.size();
+			Paging page = new Paging(pageno++, 100);
+			for(Status status : twitter.getUserTimeline(twitterHandle, page)) {
+				if(!status.isRetweet() && !status.isTruncated()) {
+					String tweet = formatTweetToString(status.getText());
+					if(tweet.length() > 0)
+						result.add(tweet);
 				}
-				if(result.size() == size)
-					break;
 			}
-			catch(TwitterException e) {
-				e.printStackTrace();
-			}
+			if(result.size() == size)
+				break;
 		}
-		System.out.println("Gathered: "+result.size()+" tweets");
 		return result;
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws TwitterException {
 		//TweetDictionary dict = new TweetDictionary("ColIegeStudent");
 		TweetDictionary dict = new TweetDictionary("DylDTM");
 		//dict.getWordsFromTweet(1);

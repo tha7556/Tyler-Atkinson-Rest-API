@@ -11,31 +11,13 @@ import java.util.Scanner;
  * @author Tyler Atkinson
  */
 public class Matrix {
-	private ArrayList<ArrayList<Double>> matrix;
+	private double[][] matrix;
 	private int width, height;
-	/**
-	 * Creates a Matrix Object from a single Point
-	 * @param p The point to make the matrix from
-	 */
-	public Matrix(Point p) {
-		width = p.size();
-		height = 1;
-		matrix = new ArrayList<ArrayList<Double>>();
-		matrix.add(new ArrayList<Double>());
-		matrix.get(0).add(p.getX());
-		matrix.get(0).add(p.getY());
-		
-	}
+
 	public Matrix(double[][] matrix) {
 		width = matrix[0].length;
 		height = matrix.length;
-		this.matrix = new ArrayList<>(height);
-		for(int i = 0; i < height; i++) {
-			this.matrix.add(new ArrayList<>(width));
-			for(int j = 0; j < width; j++) {
-				this.matrix.get(i).add(matrix[i][j]);
-			}
-		}
+		this.matrix = matrix;
 	}
 	/**
 	 * Creates a blank Matrix with null values of the designated size
@@ -45,11 +27,10 @@ public class Matrix {
 	public Matrix(int rows, int columns) {
 		width = columns;
 		height = rows;
-		matrix = new ArrayList<ArrayList<Double>>(rows);
+		matrix = new double[rows][columns];
 		for(int i = 0; i < rows; i++) {
-			matrix.add(new ArrayList<Double>(columns));
 			for(int j = 0; j < columns; j++) {
-				matrix.get(i).add(0.0);
+				matrix[i][j] = 0.0;
 			}
 		}
 	}
@@ -60,7 +41,7 @@ public class Matrix {
 	 */
 	public double[] getRow(int index) {
 		double[] row = new double[width];
-		for(int i = 0; i < matrix.get(index).size(); i++) {
+		for(int i = 0; i < matrix[index].length; i++) {
 			row[i] = get(index,i);
 		}
 		return row;
@@ -72,7 +53,7 @@ public class Matrix {
 	 */
 	public double[] getColumn(int index) {
 		double column[] = new double[height];
-		for(int i = 0; i < matrix.size(); i++) {
+		for(int i = 0; i < matrix.length; i++) {
 			column[i] = get(i,index);
 		}
 		return column;
@@ -96,7 +77,7 @@ public class Matrix {
 	 * @return The value at the given location
 	 */
 	public double get(int row, int column) {
-		return matrix.get(row).get(column);
+		return matrix[row][column];
 	}
 	/**
 	 * Sets the given position to the given value
@@ -105,18 +86,18 @@ public class Matrix {
 	 * @param value The value to insert
 	 */
 	public void set(int row, int column, double value) {
-		this.matrix.get(row).set(column, value);
+		this.matrix[row][column] = value;
 	}
 	/**
 	 * Prints the Matrix to the console
 	 */
 	public void print() {
-		for(ArrayList<Double> arr : matrix) {
-			for(int i = 0; i < arr.size(); i++) {
-				if(i < arr.size()-1)
-					System.out.print(arr.get(i)+", ");
+		for(double[] arr : matrix) {
+			for(int i = 0; i < arr.length; i++) {
+				if(i < arr.length-1)
+					System.out.print(arr[i]+", ");
 				else
-					System.out.println(arr.get(i));
+					System.out.println(arr[i]);
 			}
 		}
 	}
@@ -134,9 +115,9 @@ public class Matrix {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		for(ArrayList<Double> arr : matrix) {
-			for(int i = 0; i < arr.size(); i++) {
-				pWriter.print(arr.get(i)+",");
+		for(double[] arr : matrix) {
+			for(int i = 0; i < arr.length; i++) {
+				pWriter.print(arr[i]+",");
 				
 			}
 			pWriter.println();
@@ -271,7 +252,7 @@ public class Matrix {
 		Matrix result = new Matrix(width, height);
 		for(int y = 0; y < height; y++) {
 			for(int x = 0; x < width; x++) {
-				result.set(x, y,matrix.get(y).get(x));
+				result.set(x, y, matrix[y][x]);
 			}
 		}
 		return result;
@@ -282,9 +263,9 @@ public class Matrix {
 	 * @param rowB The index of the second row to swap
 	 */
 	public void swapRows(int rowA, int rowB) {
-		ArrayList<Double> temp = matrix.get(rowA);
-		matrix.set(rowA, matrix.get(rowB));
-		matrix.set(rowB, temp);
+		double[] temp = matrix[rowA];
+		matrix[rowA] = matrix[rowB];
+		matrix[rowB] = temp;
 	}
 	/**
 	 * Finds the Determinant (if there is one) and returns 0.0 if there isn't one
@@ -365,7 +346,7 @@ public class Matrix {
 		ArrayList<ArrayList<Double>> newMatrix = new ArrayList<ArrayList<Double>>();
 		for(int y = 0; y < height; y++) {
 			ArrayList<Double> row = new ArrayList<Double>(newWidth);
-			for(double d : matrix.get(y)) {
+			for(double d : matrix[y]) {
 				row.add(d);
 			}
 			for(double d : other.getRow(y)) {
