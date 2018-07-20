@@ -1,10 +1,6 @@
 package com.projects.matricies;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * A Matrix class used for Matrix calculations
@@ -87,47 +83,6 @@ public class Matrix {
 	 */
 	public void set(int row, int column, double value) {
 		this.matrix[row][column] = value;
-	}
-	/**
-	 * Prints the Matrix to the console
-	 */
-	public void print() {
-		for(double[] arr : matrix) {
-			for(int i = 0; i < arr.length; i++) {
-				if(i < arr.length-1)
-					System.out.print(arr[i]+", ");
-				else
-					System.out.println(arr[i]);
-			}
-		}
-	}
-	/**
-	 * Prints the Matrix to the given file in a csv format
-	 * @param fileName The file name to print to (include .csv)
-	 */
-	public void printToFile(String fileName) {
-		File file = new File(fileName);
-		FileWriter fWriter = null;
-		PrintWriter pWriter = null;
-		try {
-			fWriter = new FileWriter(file);
-			pWriter = new PrintWriter(fWriter);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		for(double[] arr : matrix) {
-			for(int i = 0; i < arr.length; i++) {
-				pWriter.print(arr[i]+",");
-				
-			}
-			pWriter.println();
-		}
-		try {
-			pWriter.close();
-			fWriter.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
 	}
 	/**
 	 * Makes a copy of the Matrix
@@ -295,8 +250,7 @@ public class Matrix {
  		for(int n = 0; n < width; n++) {
  			val *= m.get(n,n);
  		}
- 		double result = Math.pow(-1, r) * val;
- 		return result;
+		return Math.pow(-1, r) * val;
 	}
 	/**
 	 * Creates a new Matrix of the Inverse for this Matrix
@@ -343,9 +297,9 @@ public class Matrix {
 			throw new RuntimeException("Heights do not match!");
 		}
 		int newWidth = width + other.getWidth();
-		ArrayList<ArrayList<Double>> newMatrix = new ArrayList<ArrayList<Double>>();
+		ArrayList<ArrayList<Double>> newMatrix = new ArrayList<>();
 		for(int y = 0; y < height; y++) {
-			ArrayList<Double> row = new ArrayList<Double>(newWidth);
+			ArrayList<Double> row = new ArrayList<>(newWidth);
 			for(double d : matrix[y]) {
 				row.add(d);
 			}
@@ -379,35 +333,4 @@ public class Matrix {
 		}
 		return result;
 	}
-	/**
-	 * Creates a Matrix based on a file with columns seperated by tabs and rows by new lines
-	 * @param fileName The name of the file containing the Matrix data
-	 * @return The resulting Matrix from the file
-	 */
-	public static Matrix getFromFile(String fileName) {
-		ArrayList<ArrayList<Double>> matrix = new ArrayList<ArrayList<Double>>();
-		Scanner scanner = null;
-		try {
-			scanner = new Scanner(new File(fileName));
-			while(scanner.hasNextLine()) {
-				ArrayList<Double> array = new ArrayList<Double>();
-				String line = scanner.nextLine();
-				String[] arr = line.split("\t");
-				for(int i = 0; i < arr.length; i++) {
-					array.add(Double.parseDouble(arr[i].trim()));
-				}
-				matrix.add(array);
-			}
-			scanner.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		Matrix result = new Matrix(matrix.size(),matrix.get(0).size());
-		for(int y = 0; y < result.getHeight(); y++) {
-			for(int x = 0; x < result.getWidth(); x++) {
-				result.set(y, x, matrix.get(y).get(x));
-			}
-		}
-		return result;
-	} 
 }

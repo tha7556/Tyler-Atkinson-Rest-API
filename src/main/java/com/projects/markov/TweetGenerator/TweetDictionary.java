@@ -17,10 +17,10 @@ public class TweetDictionary {
 		return twitterHandle;
 	}
 	public ArrayList<String> getWordsFromTweet(String tweet) {
-		ArrayList<String> result = new ArrayList<String>();
+		ArrayList<String> result = new ArrayList<>();
 		String[] words = tweet.split(" ");
 		for(String s : words) {
-			ArrayList<String> temp = new ArrayList<String>();
+			ArrayList<String> temp = new ArrayList<>();
 			int start = 0, current = 0;
 			for(; current < s.length(); current++) {
 				if(!Character.isLetter(s.charAt(current)) && !Character.isDigit(s.charAt(current)) && !(s.charAt(current) == '\'')) { //current point is a symbol
@@ -41,7 +41,7 @@ public class TweetDictionary {
 	}
 	public static String formatTweetToString(String status) { //remove newlines, extra space, and urls
 		String text = status;
-		if(text.indexOf("http") != -1) {
+		if(text.contains("http")) {
 			String temp = text.substring(text.indexOf("http"));
 			text = text.replace(temp, "");
 		}
@@ -54,7 +54,7 @@ public class TweetDictionary {
 		return text.trim();
 	}
 	public static ArrayList<String> getAllTweetsFrom(String twitterHandle) throws TwitterException{
-		ArrayList<String> result = new ArrayList<String>();
+		ArrayList<String> result = new ArrayList<>();
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setOAuthConsumerKey("NkHd3jqeKSSf4zYXvlCmxSvQh");
 	    cb.setOAuthConsumerSecret("bflKHYWEHVxYz0kUtIcLT10o2CfsEMbeP1Scqv9A4A2s0PeHTb");
@@ -78,13 +78,5 @@ public class TweetDictionary {
 				break;
 		}
 		return result;
-	}
-	public static void main(String[] args) throws TwitterException {
-		//TweetDictionary dict = new TweetDictionary("ColIegeStudent");
-		TweetDictionary dict = new TweetDictionary("DylDTM");
-		//dict.getWordsFromTweet(1);
-		for(String tweet : dict.getTweets()) {
-			System.out.println(tweet);
-		}
 	}
 }

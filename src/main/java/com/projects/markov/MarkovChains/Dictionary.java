@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Dictionary {
 	private ArrayList<String> words;
 	public Dictionary(String fileName) {
-		words = new ArrayList<String>();
+		words = new ArrayList<>();
 		File file = new File(fileName);
 		try {
 			Scanner scanner = new Scanner(file);
@@ -26,20 +26,16 @@ public class Dictionary {
 		return words;
 	}
 	public String toString() {
-		String string = "";
+		StringBuilder string = new StringBuilder();
 		for(int i = 0; i < words.size(); i++) {
 			if(i+1 % 12 == 0)
-				string += words.get(i)+"\n";
+				string.append(words.get(i)).append("\n");
 			else
-				string +=words.get(i)+"  ";
+				string.append(words.get(i)).append("  ");
 		}
-		return string;
+		return string.toString();
 	}
 	public Boolean contains(String word) {
 		return words.contains(word.toLowerCase());
-	}
-	public static void main(String[] args) {
-		Dictionary dict = new Dictionary("E:\\ComputerScience\\Workspace\\Ai Project2\\Dictionary.txt");
-		System.out.println(dict.getWords().size());
 	}
 }

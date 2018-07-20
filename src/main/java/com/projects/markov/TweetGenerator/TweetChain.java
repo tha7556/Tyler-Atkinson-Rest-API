@@ -1,11 +1,5 @@
 package com.projects.markov.TweetGenerator;
 
-import twitter4j.TwitterException;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,20 +16,20 @@ public class TweetChain {
 	private int max, min;
 	public TweetChain(TweetDictionary dict) {
 		this.dictionary = dict;
-		this.knownWords = new ArrayList<String>();
+		this.knownWords = new ArrayList<>();
 		knownWords.add(NIL);
-		this.table = new HashMap<String,Integer>();
+		this.table = new HashMap<>();
 		max = -1;
 		min = Integer.MAX_VALUE;
 		putAllTweetsInTable();		
 	}
 	public String writeTweet() {
-		ArrayList<String> tweet = new ArrayList<String>();
+		ArrayList<String> tweet = new ArrayList<>();
 		tweet.add(NIL);
 		int size = 0;
 		while((size <= 1 ||  !tweet.get(tweet.size()-1).equals(NIL)) && size < 280) {
-			ArrayList<String> words = new ArrayList<String>();
-			ArrayList<Integer> values = new ArrayList<Integer>();
+			ArrayList<String> words = new ArrayList<>();
+			ArrayList<Integer> values = new ArrayList<>();
 			String lastWord = tweet.get(tweet.size()-1);
 			for(String word : knownWords) {
 				int count = getCountForTransition(lastWord+word);
@@ -66,7 +60,7 @@ public class TweetChain {
 			if(i < words.size() && !knownWords.contains(words.get(i))) { //new word
 				knownWords.add(words.get(i));
 			}
-			String transition = "";
+			String transition;
 			if(i == 0) { //first word
 				transition = NIL+words.get(i);
 			}
@@ -117,7 +111,7 @@ public class TweetChain {
 		for(int i = 0; i < words.size(); i++) {
 			if(words.get(i).equals("i"))
 				words.set(i,"I");
-			else if(words.get(i).indexOf("i\'") != -1)
+			else if(words.get(i).contains("i\'"))
 				words.set(i, "I" + words.get(i).substring(1));
 			else if(words.get(i).equals("america"))
 				words.set(i, "America");
@@ -144,52 +138,6 @@ public class TweetChain {
 				return true;
 			
 		return false;
-	}
-	public static void printTable(TweetChain chain) {
-		File file = new File ("chain.csv"); 
-		FileWriter fWriter = null;
-		try {
-			fWriter = new FileWriter (file);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-		PrintWriter pWriter = new PrintWriter (fWriter);
-		
-		pWriter.print(",");
-		for(String s : chain.getKnownWords()) {
-			String s1 = s;
-			if(s.equals(NIL))
-				s1 = "NIL";
-			s1 = "=\""+s1+"\"";
-			pWriter.print(s1+",");
-		}
-		pWriter.println();
-		for(String from : chain.getKnownWords()) {
-			String f = from;
-			if(from.equals(NIL))
-				f = "NIL";
-			f = "=\""+f+"\"";
-			pWriter.print(f+",");
-			for(String to : chain.getKnownWords()) {
-				pWriter.print(chain.getCountForTransition(from+to)+",");
-			}
-			pWriter.println();
-		}
-		try {
-			fWriter.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		pWriter.close();
-	}
-	public static void main(String[] args) throws TwitterException {
-		//Nifty tweeters: DylDTM manacurves ColIegeStudent abominable_andy
-		TweetDictionary dict = new TweetDictionary("realDonaldTrump");
-		TweetChain chain = new TweetChain(dict);
-		for(int i = 0; i < 150; i++)
-			System.out.println(chain.writeTweet() +"\n");
-		//TweetChain.printTable(chain);
 	}
 	
 }

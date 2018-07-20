@@ -12,7 +12,7 @@ public class MarkovChain {
 	public final String[] CHARS = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",NIL};
 	public MarkovChain(Dictionary dict) {
 		this.dict = dict;
-		table = new HashMap<String,Integer>();
+		table = new HashMap<>();
 		for(int i = 0; i < CHARS.length; i++) {
 			for(int j = 0; j < CHARS.length; j++) {
 				table.put(CHARS[i]+CHARS[j],0);
@@ -38,11 +38,11 @@ public class MarkovChain {
 	}
 	public String createWord(int maxLength) {
 		Random r = new Random();
-		ArrayList<String> string = new ArrayList<String>();
+		ArrayList<String> string = new ArrayList<>();
 		string.add(NIL);
 		while((!string.get(string.size()-1).equals(NIL) || string.size() <= 1)) { //&& string.size() <= 2+maxLength) {
-			ArrayList<String> letters = new ArrayList<String>();
-			ArrayList<Integer> values = new ArrayList<Integer>();
+			ArrayList<String> letters = new ArrayList<>();
+			ArrayList<Integer> values = new ArrayList<>();
 			int maxTarget = getMaxValue()+5;
 			int minTarget = getMinValue()+5;
 			int target = r.nextInt((max - min) + 1) + min;
@@ -64,11 +64,11 @@ public class MarkovChain {
 			string.add(letters.get(i));
 		}
 		//return
-		String result = "";
+		StringBuilder result = new StringBuilder();
 		for(String s : string)
 			if(!s.equals(NIL))
-				result += s;
-		return result;
+				result.append(s);
+		return result.toString();
 	}
 	public int getAverageValue() {
 		if(average == 0) {
@@ -121,7 +121,7 @@ public class MarkovChain {
 	}
 	public static void main(String[] args) {
 		Dictionary dict = new Dictionary("E:\\ComputerScience\\Github\\Ai-Markov-Chains\\MedDictionary.txt");
-		ArrayList<String> result = new ArrayList<String>(dict.getWords().size());
+		ArrayList<String> result = new ArrayList<>(dict.getWords().size());
 		MarkovChain m = new MarkovChain(dict);
 		int i = 0;
 		while(result.size() < dict.getWords().size() || 1==1) {

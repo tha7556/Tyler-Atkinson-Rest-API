@@ -3,7 +3,6 @@ package com.api.controllers;
 import com.projects.tsp.Salesman.BlacksmithSalesman;
 import com.projects.tsp.Salesman.GeneticSalesman;
 import com.projects.tsp.utility.City;
-import com.projects.tsp.utility.Route;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

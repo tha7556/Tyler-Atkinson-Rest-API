@@ -1,13 +1,5 @@
 package com.projects.backpropagation;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -20,13 +12,13 @@ public class Network implements Serializable{
 	private ArrayList<Node> inputNodes, hiddenNodes, outputNodes;
 	private Map<String,Double> weightMap;
 	Node biasNode;
-	private final double learningRate = .5;
+	private static final double learningRate = .5;
 	
 	public Network(int inputs, int outputs,int numHidden) {
-		this.inputNodes = new ArrayList<Node>();
-		hiddenNodes = new ArrayList<Node>();
-		this.outputNodes = new ArrayList<Node>();
-		weightMap = new HashMap<String,Double>();
+		this.inputNodes = new ArrayList<>();
+		hiddenNodes = new ArrayList<>();
+		this.outputNodes = new ArrayList<>();
+		weightMap = new HashMap<>();
 		for(int i = 0; i < inputs; i++) {
 			inputNodes.add(new Node("Input_"+(i+1)));
 		}
@@ -37,7 +29,7 @@ public class Network implements Serializable{
 		for(int i = 0; i < numHidden; i++) {
 			hiddenNodes.add(new Node("Hidden_"+(i+1)));
 		}
-		biasNode = new Node("+Bias",1.0);
+		biasNode = new Node("Bias",1.0);
 		setUpNetwork();
 	}
 	public Network(com.api.objects.backpropagation.Node[] inputNodes, com.api.objects.backpropagation.Node[] hiddenNodes, com.api.objects.backpropagation.Node[] outputNodes, HashMap<String, Double> weightMap) {
@@ -53,8 +45,8 @@ public class Network implements Serializable{
 		for(int i = 0; i < outputNodes.length; i++) {
 			this.outputNodes.add(new Node(outputNodes[i].getName(), outputNodes[i].getData()));
 		}
-		this.weightMap = weightMap; //TODO: delete Weight, have bias weights in weightMap, do something with bias nodes
-		biasNode = new Node("+Bias",1.0);
+		this.weightMap = weightMap;
+		biasNode = new Node("Bias",1.0);
 	}
 	public static double getRandom() {
 		Random r = new Random();
@@ -101,7 +93,7 @@ public class Network implements Serializable{
 			}
 		}
 	}
-	public Integer train(double[][] trainingSetInputs,double[][] trainingSetOutputs, double targetError) {
+	public void train(double[][] trainingSetInputs, double[][] trainingSetOutputs, double targetError) {
 		double error = 999.9;
 		int j = 0;
 		//com.projects.backpropagation.Network.write("Epoch,Error,Input1->hidden1 weight","E:\\\\ComputerScience\\\\Workspace\\\\Ai Project1\\\\\\\\ShapeError.csv",false);
@@ -125,7 +117,6 @@ public class Network implements Serializable{
 			calculateNewWeights();
 			
 		}
-		return j;
 	}
 	public void enterInputs(double[] inputs) {
 		for(int i = 0; i < inputs.length; i++) {
@@ -140,7 +131,7 @@ public class Network implements Serializable{
 		for(Node hidden : hiddenNodes) {
 			double data = weightMap.get(hidden.getName()+biasNode.getName()) * biasNode.getData();
 			for(Node input : inputNodes) {
-				data += input.getData() * (Double)weightMap.get(input.getName()+hidden.getName());
+				data += input.getData() * weightMap.get(input.getName()+hidden.getName());
 			}
 			data = 1/(1+Math.exp(-data));
 			hidden.setData(data);
@@ -148,7 +139,7 @@ public class Network implements Serializable{
 		for(Node output : outputNodes ) {
 			double data = weightMap.get(output.getName()+biasNode.getName()) * biasNode.getData();
 			for(Node hidden : hiddenNodes) {
-				data += hidden.getData() * (Double)weightMap.get(hidden.getName()+output.getName());
+				data += hidden.getData() * weightMap.get(hidden.getName()+output.getName());
 			}
 			data = Network.sigmoid(data);
 			output.setData(data);
@@ -213,116 +204,11 @@ public class Network implements Serializable{
 	public Integer getHiddenSize() {
 		return hiddenNodes.size();
 	}
-	private void writeObject(ObjectOutputStream o)
-	{  
-		    
-		try 
-		{
-			o.defaultWriteObject();
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-	}
-	private void readObject(ObjectInputStream o) {    
-		try {
-			o.defaultReadObject();
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}	
-	}
-	public void saveNetwork(String fileName) {
-		try
-	    {
-	       FileOutputStream fileOut = new FileOutputStream(fileName);
-	       ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	       out.writeObject(this);
-	       out.close();
-	       fileOut.close();
-	    } 
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-	public void loadNetwork(String fileName) {
-		try
-	    {
-	        FileInputStream fileIn = new FileInputStream(fileName);
-	        ObjectInputStream in = new ObjectInputStream(fileIn);
-			Network network = (Network) in.readObject();
-
-	        in.close();
-	        fileIn.close();
-	        this.inputNodes = network.getInputNodes();
-	        this.hiddenNodes = network.getHiddenNodes();
-	        this.outputNodes = network.getOutputNodes();
-	        this.weightMap = network.getWeights();
-	    } 
-	    catch(Exception e) {
-	    	e.printStackTrace();
-	    }
-	}
-	public static void write(String string, String fileName, boolean append) {
-		File file = new File(fileName);
-		FileWriter fWriter;
-		try {
-			fWriter = new FileWriter (file,append);
-			PrintWriter pWriter = new PrintWriter(fWriter);
-			pWriter.println(string);
-			pWriter.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-		
-	}
 	public static double sigmoid(double val) {
 		return 1.0 / (1 + Math.exp(-val));
 	}
 	public static double sigmoidDerivative(double val) {
 		return val*(1.0-val);
-	}
-	public static void main(String[] args) {
-		double[][] trainingSetInputs = {{.1,.1},{.1,.9},{.9,.1},{.9,.9}};
-		double[][] trainingSetOutputs = {{.1},{.9},{.9},{.1}}; //XOR
-		//double[][] trainingSetOutputs = {{.1},{.1},{.1},{.9}}; //AND
-		//double[][] trainingSetOutputs = {{.1},{.9},{.9},{.9}}; //OR
-		//double[][] trainingSetOutputs = {{.1,.1,.1},{.9,.1,.9},{.9,.1,.9},{.1,.9,.9}}; //All 3
-	
-		double targetError = .000000000000001;
-		double av = 0.0;
-		Network n = new Network(2,1,2);
-		n.train(trainingSetInputs, trainingSetOutputs, targetError);
-		//n.saveNetwork("E:\\ComputerScience\\Github\\Ai-Backpropagation\\Data\\ANDNetwork.ntwrk");
-		//n.loadNetwork("E:\\ComputerScience\\Github\\Ai-Backpropagation\\Data\\ANDNetwork.ntwrk");
-		
-		
-		//Testing
-		
-		DecimalFormat decimalFormat = new DecimalFormat("#.0");
-		if(n.getOutputNodes().size() == 3) {
-			System.out.println("\n\n X  Y|  XOR AND OR");
-			for(double[] arr : trainingSetInputs) {
-				n.enterInputs(arr);
-				n.runNetwork();
-				System.out.printf("%s %s|  %s %s %s\n",
-						decimalFormat.format(arr[0]),decimalFormat.format(arr[1]),decimalFormat.format(n.getOutputNodes().get(0).getData()),
-						decimalFormat.format(n.getOutputNodes().get(1).getData()),decimalFormat.format(n.getOutputNodes().get(2).getData()));
-			}
-		}
-		else if(n.getOutputNodes().size() == 1) {
-			System.out.println("\n\n X  Y|  Output");
-			for(double[] arr : trainingSetInputs) {
-				n.enterInputs(arr);
-				n.runNetwork();
-				System.out.printf("%s %s|  %s\n",
-						decimalFormat.format(arr[0]),decimalFormat.format(arr[1]),decimalFormat.format(n.getOutputNodes().get(0).getData()));
-			}
-		}
-		
-	
 	}
 
 }

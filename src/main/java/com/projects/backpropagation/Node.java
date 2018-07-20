@@ -1,7 +1,5 @@
 package com.projects.backpropagation;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class Node implements Serializable{
@@ -37,25 +35,5 @@ public class Node implements Serializable{
 	}
 	public void setError(double error) {
 		this.error = error;
-	}
-	private void writeObject(ObjectOutputStream o)
-	{  
-		    
-		try 
-		{
-			o.defaultWriteObject();
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-	}
-	private void readObject(ObjectInputStream o) {    
-		try {
-			o.defaultReadObject();
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}	
 	}
 }

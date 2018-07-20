@@ -1,7 +1,6 @@
 package com.api.objects.backpropagation;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -67,7 +66,7 @@ public class Backpropagation {
     }
     public static class Deserializer extends JsonDeserializer<Backpropagation> {
         @Override
-        public Backpropagation deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+        public Backpropagation deserialize(JsonParser jp, DeserializationContext context) throws IOException {
             ObjectCodec oc = jp.getCodec();
             JsonNode node = oc.readTree(jp);
 
