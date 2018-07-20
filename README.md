@@ -41,7 +41,7 @@ Calls available so far:
 <b>Traveling Salesman Problem:</b> <i>source: </i>[Traveling Salesman](https://github.com/tha7556/Traveling-Salesman-Problem "Traveling Salesman Source")
 <br/>Each of these take an array of cities as a parameter. The format is shown below in a JSON
 <br/><i>(You should use more than 2 cities if you want it to do anything)</i>
-```
+```JSON
 [
     {
       "x": 10,
