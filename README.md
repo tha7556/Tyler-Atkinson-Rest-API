@@ -4,8 +4,8 @@ A REST API to access and run some of my previous Java projects
 Calls available so far:
 
 <b>Markov Chains:</b>
-<br/>GET {site}/markov/{user} = Gets a tweet generated based off of the user
-<br/>GET {site}/markov/{user}/{quantity} = Gets {quantity} tweets generated based off of the user
+  - GET {site}/markov/{user} = Gets a tweet generated based off of the user
+  - GET {site}/markov/{user}/{quantity} = Gets {quantity} tweets generated based off of the user
 
 <b>Backpropagation:</b>
   - POST {site}/backpropagation/ = Gets a neural network trained from backpropagation.
