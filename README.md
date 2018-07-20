@@ -1,13 +1,14 @@
 # Tyler-Atkinson-Rest-API
 A REST API to access and run some of my previous Java projects
+<br/><i>(Not yet on a server)</i>
 
 Calls available so far:
 
-<b>Markov Chains:</b>
+<b>Markov Chains:</b> <i>source: </i>[Markov Chains](https://github.com/tha7556/Ai-Markov-Chains "Markov Chain Source")
   - GET {site}/markov/{user} = Gets a tweet generated based off of the user
   - GET {site}/markov/{user}/{quantity} = Gets {quantity} tweets generated based off of the user
 
-<b>Backpropagation:</b>
+<b>Backpropagation:</b> <i>source: </i>[Backpropagation](https://github.com/tha7556/Ai-Backpropagation "Backpropagation Source")
   - POST {site}/backpropagation/ = Gets a neural network trained from backpropagation.
 <br/>It should pass a JSON object in this form:
 <br/><i>ex) A XOR network</i>
