@@ -38,6 +38,8 @@ Calls available so far:
   - POST {site}/backpropagation/run = runs the trained neural network and returns the result
 <br>It should pass the created network in the JSON that is returned from POST {site}/backpropagation, modifying only the data inside of the input.
 
+
+
 <b>Traveling Salesman Problem:</b> <i>source: </i>[Traveling Salesman](https://github.com/tha7556/Traveling-Salesman-Problem "Traveling Salesman Source")
   - GET {site}/salesman/genetic/{numberOfCities} = Returns the shortest route between all cities, which are generated randomly based on the provided number of cities, calculated with a genetic algorithm
   - GET {site}/salesman/annealing/{numberOfCities} = Returns the shortest route between all cities, which are generated randomly based on the provided number of cities, calculated with Simulated Annealing
@@ -59,3 +61,21 @@ Calls available so far:
 ```
    - POST {site}/salesman/genetic/ = Returns the shortest route between all cities, calculated with a genetic algorithm
    - POST {site}/salesman/annealing/ = Returns the shortest route between all cities, calculated with Simulated Annealing
+
+<b>Matrix Operations:</b> <i>source: </i>[Matrices](https://github.com/tha7556/Matrices "Matrices Source")
+<br/><br/>Each of the following take an array of exactly 2 matrices of doubles. The format is shown below in a JSON
+```JSON
+[
+	[
+		[1,3,5],
+		[2,3,9],
+		[5,3,6]
+	],
+	[
+		[4,7,4],
+		[1,2,2],
+		[3,8,3]
+	]
+]
+```
+  - POST {site}/matrix/add = Adds the 2 Matrices together and returns the result
