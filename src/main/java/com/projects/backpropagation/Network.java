@@ -40,7 +40,7 @@ public class Network implements Serializable{
 		biasNode = new Node("+Bias",1.0);
 		setUpNetwork();
 	}
-	public Network(com.api.Node[] inputNodes, com.api.Node[] hiddenNodes, com.api.Node[] outputNodes, HashMap<String, Double> weightMap) {
+	public Network(com.api.objects.backpropagation.Node[] inputNodes, com.api.objects.backpropagation.Node[] hiddenNodes, com.api.objects.backpropagation.Node[] outputNodes, HashMap<String, Double> weightMap) {
 		this.inputNodes = new ArrayList<>(inputNodes.length);
 		for(int i = 0; i < inputNodes.length; i++) {
 			this.inputNodes.add(new Node(inputNodes[i].getName(), inputNodes[i].getData()));

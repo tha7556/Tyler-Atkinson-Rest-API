@@ -1,4 +1,4 @@
-package com.api;
+package com.api.objects.markov;
 
 import com.projects.markov.TweetGenerator.TweetChain;
 import com.projects.markov.TweetGenerator.TweetDictionary;

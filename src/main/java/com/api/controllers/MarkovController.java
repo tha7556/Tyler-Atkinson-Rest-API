@@ -1,7 +1,7 @@
 package com.api.controllers;
 
-import com.api.Markov;
-import com.api.Tweet;
+import com.api.objects.markov.Markov;
+import com.api.objects.markov.Tweet;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;

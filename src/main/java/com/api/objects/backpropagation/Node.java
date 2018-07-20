@@ -1,4 +1,4 @@
-package com.api;
+package com.api.objects.backpropagation;
 
 public class Node {
     private String name;

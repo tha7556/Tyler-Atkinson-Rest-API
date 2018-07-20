@@ -1,4 +1,4 @@
-package com.api;
+package com.api.objects.markov;
 
 public class Tweet {
     private final String user, tweet;

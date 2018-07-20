@@ -1,4 +1,4 @@
-package com.api;
+package com.api.objects.backpropagation;
 
 import com.api.controllers.BackpropagationParams;
 import com.fasterxml.jackson.core.JsonParser;
