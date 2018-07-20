@@ -39,7 +39,9 @@ Calls available so far:
 <br>It should pass the created network in the JSON that is returned from POST {site}/backpropagation, modifying only the data inside of the input.
 
 <b>Traveling Salesman Problem:</b> <i>source: </i>[Traveling Salesman](https://github.com/tha7556/Traveling-Salesman-Problem "Traveling Salesman Source")
-<br/>Each of these take an array of cities as a parameter. The format is shown below in a JSON
+  - GET {site}/salesman/genetic/{numberOfCities} = Returns the shortest route between all cities, which are generated randomly based on the provided number of cities, calculated with a genetic algorithm
+  - GET {site}/salesman/annealing/{numberOfCities} = Returns the shortest route between all cities, which are generated randomly based on the provided number of cities, calculated with Simulated Annealing
+<br/><br/>Each of the following take an array of cities as a parameter. The format is shown below in a JSON
 <br/><i>(You should use more than 2 cities if you want it to do anything)</i>
 ```JSON
 [
