@@ -33,7 +33,7 @@ public abstract class Salesman {
 		this.cities = cities;
 		bestRoute = new Route(cities);
 		worstRoute = bestRoute;
-		bestFitness = bestRoute.getFitness();
+		bestFitness = bestRoute.calcFitness();
 		worstFitness = bestFitness;
 	}
 	/**
@@ -54,7 +54,7 @@ public abstract class Salesman {
 	 * @param route The current Route
 	 */
 	public void compareRoute(Route route) {
-		double fitness = route.getFitness();
+		double fitness = route.calcFitness();
 		mean += route.getDistance();
 		sum += route.getDistance();
 		sqrSum += Math.pow(route.getDistance(),2.0);
@@ -161,6 +161,12 @@ public abstract class Salesman {
 		}
 		return result;
 		
+	}
+	public Route getBestRoute() {
+		return bestRoute;
+	}
+	public Route getWorstRoute() {
+		return worstRoute;
 	}
 
 }

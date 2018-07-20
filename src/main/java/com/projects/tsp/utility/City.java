@@ -4,8 +4,8 @@ package com.projects.tsp.utility;
  * @author Tyler Atkinson
  */
 public class City {
-	public double x,y;
-	String name;
+	private double x,y;
+	private String name;
 	/**
 	 * Creates a new City named: name with coordinates (x,y) 
 	 * @param name The name of the City
@@ -16,6 +16,9 @@ public class City {
 		this.name = name;
 		this.x = x;
 		this.y = y;
+	}
+	public City() {
+
 	}
 	/**
 	 * Gets the X value of the City
@@ -51,5 +54,14 @@ public class City {
 	 */
 	public String toString() {
 		return name + ": (" + x + "," + y + ")";
+	}
+	public void setX(double x) {
+		this.x = x;
+	}
+	public void setY(double y) {
+		this.y = y;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }

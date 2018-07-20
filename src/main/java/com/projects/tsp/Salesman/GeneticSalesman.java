@@ -5,7 +5,6 @@ package com.projects.tsp.Salesman;
 import com.projects.tsp.utility.City;
 import com.projects.tsp.utility.Route;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -14,11 +13,11 @@ import java.util.Random;
  * @author Tyler Atkinson
  */
 public class GeneticSalesman extends Salesman {
-    private final int POPULATION_SIZE = 200;
-    private final double MUTATION_RATE = 0.01;
+    private final static int POPULATION_SIZE = 200;
+    private final static double MUTATION_RATE = 0.01;
     private double totalFitness;
     private int generations,lastChanged, delta;
-    private Random rand;
+    private static Random rand;
     private Route[] routes;
     /**
      * Creates a new Salesman out of an Array of Cities
@@ -48,7 +47,7 @@ public class GeneticSalesman extends Salesman {
         for(int i = 0; i < POPULATION_SIZE; i++) {
             Route r = new Route(shuffleArray(cities,true));
             routes[i] = r;
-            totalFitness += r.getFitness();
+            totalFitness += r.calcFitness();
         }
 
     }
@@ -57,7 +56,7 @@ public class GeneticSalesman extends Salesman {
      * @return The number of seconds taken to calculate the shortest Route
      */
     public double compute() {
-        createBins();
+       // createBins();
         computations = 0;
         mean = 0;
         sum = 0;
@@ -73,7 +72,7 @@ public class GeneticSalesman extends Salesman {
         System.out.println("STD Deviation: " + stdDeviation);
         System.out.println("Computations: "+computations);
         System.out.println("Generations: "+generations);
-        writeBinsToFile("data\\GeneticHistogram.csv");
+       // writeBinsToFile("data\\GeneticHistogram.csv");
         return (endTime-startTime)/1000000000.0;
     }
 
@@ -102,7 +101,7 @@ public class GeneticSalesman extends Salesman {
         for(int i = 1; i < routes.length; i++) {
             Route[] parents = selectParents();
             Route child = createChild(parents[0],parents[1]);
-            totalFitness += child.getFitness();
+            totalFitness += child.calcFitness();
             newRoutes[i] = mutate(child);
         }
         routes = newRoutes;
@@ -123,7 +122,7 @@ public class GeneticSalesman extends Salesman {
         while(current < target) {
             if(i == routes.length)
                 i = 0;
-            current += routes[i].getFitness();
+            current += routes[i].calcFitness();
             i++;
         }
         i--;
@@ -137,7 +136,7 @@ public class GeneticSalesman extends Salesman {
         while(current < target) {
             if(i == routes.length)
                 i = 0;
-            current += routes[i].getFitness();
+            current += routes[i].calcFitness();
             i++;
         }
         i--;

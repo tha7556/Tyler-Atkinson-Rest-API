@@ -18,6 +18,12 @@ public class Route {
 		resetDistance();
 		getDistance();
 	}
+	public Route() {
+
+	}
+	public void setCities(City[] cities) {
+		this.cities = cities;
+	}
 	/**
 	 * Gets the array of Cities
 	 * @return The array of Cities
@@ -58,7 +64,7 @@ public class Route {
 	 * Calculates the fitness of the root(1/distance)
 	 * @return The Route's fitness
 	 */
-	public double getFitness() {
+	public double calcFitness() {
 		return 1.0/getDistance();
 	}
 	/**

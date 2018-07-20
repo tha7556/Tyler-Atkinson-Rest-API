@@ -1,4 +1,4 @@
-package com.api.controllers;
+package com.api.objects.backpropagation;
 
 public class BackpropagationParams {
     private double[][] input, expectedOutput;

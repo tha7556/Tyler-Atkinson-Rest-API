@@ -16,7 +16,7 @@ public class BlacksmithSalesman extends Salesman {
         rand = new Random();
     }
     public double compute() {
-        createBins();
+       // createBins();
         startTime = System.nanoTime();
         while(temperature > 0.00000001) {
             Route newRoute = currentRoute;
@@ -34,7 +34,7 @@ public class BlacksmithSalesman extends Salesman {
             temperature *= 1.0 - coolingRate;
         }
         endTime = System.nanoTime();
-        writeBinsToFile("data\\BlackSmithHistogram.csv");
+        //writeBinsToFile("data\\BlackSmithHistogram.csv");
         System.out.println("Mean: "+mean/computations);
         double stdDeviation = Math.sqrt((sqrSum-(Math.pow(sum,2.0)/(double)computations))/(double)computations);
         System.out.println("STD Deviation: " + stdDeviation);
