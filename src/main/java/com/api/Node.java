@@ -1,9 +1,12 @@
 package com.api;
 
 public class Node {
-    private final String name;
-    private final double data;
+    private String name;
+    private double data;
 
+    public Node() {
+
+    }
     public Node(String name, double data) {
         this.data = data;
         this.name = name;
@@ -13,5 +16,11 @@ public class Node {
     }
     public String getName() {
         return name;
+    }
+    public void setData(double data) {
+        this.data = data;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 }

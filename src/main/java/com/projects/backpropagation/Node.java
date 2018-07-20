@@ -7,13 +7,15 @@ import java.io.Serializable;
 public class Node implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private double data;
-	private Node bias;
-	private Weight biasWeight;
 	private double target,error;
 	private String name;
 	
 	public Node(String name) {
 		this.name = name;
+	}
+	public Node(String name, double data) {
+		this.name = name;
+		this.data = data;
 	}
 	public String getName() {
 		return name;
@@ -23,21 +25,6 @@ public class Node implements Serializable{
 	}
 	public void setData(double data) {
 		this.data = data;
-	}
-	public void setBiasWeight(Weight biasWeight) {
-		this.biasWeight = biasWeight;
-	}
-	public Weight getBiasWeight() {
-		return biasWeight;
-	}
-	public void setBias(Node bias) {
-		this.bias = bias;
-	}
-	public Boolean hasBias() {
-		return (bias != null);
-	}
-	public Node getBias() {
-		return bias;
 	}
 	public Double getTarget() {
 		return target;
