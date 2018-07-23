@@ -1,5 +1,5 @@
 # Tyler-Atkinson-Rest-API
-A REST API to access and run some of my previous Java projects
+A REST API to access and run some of my previous Java projects, made with the Spring framework
 <br/><i>(Not yet on a server)</i>
 
 Calls available so far:
