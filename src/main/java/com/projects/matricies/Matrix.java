@@ -122,8 +122,8 @@ public class Matrix {
 	 * @return The resulting Matrix of the multiplication
 	 */
 	public Matrix multiply(Matrix other) { 
-		if(width == other.getHeight()) {
-		Matrix matrix = new Matrix(height,other.getWidth());
+		if(other != null && width == other.getHeight()) {
+			Matrix matrix = new Matrix(height,other.getWidth());
 			for(int i = 0; i < height; i++) { //each row
 				for(int j = 0; j < other.getWidth(); j++) { //each column
 					for(int y = 0; y < width; y++) {
@@ -136,7 +136,7 @@ public class Matrix {
 			return matrix;
 		}
 		else {
-			throw new RuntimeException("A\'s width must be equal to B\'s height!");
+			return null;
 		}
 	}
 	/**
