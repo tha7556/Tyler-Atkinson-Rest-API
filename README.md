@@ -63,6 +63,7 @@ Calls available so far:
    - POST {site}/salesman/annealing/ = Returns the shortest route between all cities, calculated with Simulated Annealing
 
 <b>Matrix Operations:</b> <i>source: </i>[Matrices](https://github.com/tha7556/Matrices "Matrices Source")
+  - GET {site}/matrix/identity/{width} = Gets the identity Matrix with the given width
 <br/><br/>Each of the following take an array of exactly 2 matrices of doubles. The format is shown below in a JSON
 ```JSON
 [
@@ -79,3 +80,20 @@ Calls available so far:
 ]
 ```
   - POST {site}/matrix/add = Adds the 2 Matrices together and returns the result
+  - POST {site}/matrix/subtract = Subtracts the second Matrix from the first Matrix and returns the result
+  - POST {site}/matrix/multiply = Multiplies the 2 Matrices together using Matrix multiplication and returns the result
+  - POST {site}/matrix/append = Appends the second Matrix on to the end of the first and returns the result
+  <br/><br/>Each of the following take an array of arrays of doubles. The format is shown below in a JSON
+```JSON
+[
+	[1,3,5],
+	[2,3,9],
+	[5,3,6]
+]
+```
+  - POST {site}/matrix/multiplyScalar/{scalar} = Only takes 1 Matrix as a parameter, and multiplies it by the scalar
+  - POST {site}/matrix/transpose = Gets the transpose of the provided Matrix
+  - POST {site}/matrix/determinant = Gets the determinant of the provided Matrix
+  - POST {site}/matrix/inverse = Gets the inverse of the provided Matrix
+  
+
