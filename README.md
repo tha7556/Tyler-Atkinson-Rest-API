@@ -47,16 +47,16 @@ Calls available so far:
 <br/><i>(You should use more than 2 cities if you want it to do anything)</i>
 ```JSON
 [
-    {
-      "x": 10,
-      "y": 11,
-      "name": "A"
-    },
-    {
-      "x": 15,
-      "y": 12,
-      "name": "B"
-   }
+  {
+    "x": 10,
+    "y": 11,
+    "name": "A"
+  },
+  {
+    "x": 15,
+    "y": 12,
+    "name": "B"
+  }
 ]
 ```
    - POST {site}/salesman/genetic/ = Returns the shortest route between all cities, calculated with a genetic algorithm
@@ -67,16 +67,16 @@ Calls available so far:
 <br/><br/>Each of the following take an array of exactly 2 matrices of doubles. The format is shown below in a JSON
 ```JSON
 [
-	[
-		[1,3,5],
-		[2,3,9],
-		[5,3,6]
-	],
-	[
-		[4,7,4],
-		[1,2,2],
-		[3,8,3]
-	]
+   [
+      [1,3,5],
+      [2,3,9],
+      [5,3,6]
+   ],
+   [
+      [4,7,4],
+      [1,2,2],
+      [3,8,3]
+   ]
 ]
 ```
   - POST {site}/matrix/add = Adds the 2 Matrices together and returns the result
@@ -86,9 +86,9 @@ Calls available so far:
   <br/><br/>Each of the following take an array of arrays of doubles. The format is shown below in a JSON
 ```JSON
 [
-	[1,3,5],
-	[2,3,9],
-	[5,3,6]
+   [1,3,5],
+   [2,3,9],
+   [5,3,6]
 ]
 ```
   - POST {site}/matrix/multiplyScalar/{scalar} = Only takes 1 Matrix as a parameter, and multiplies it by the scalar
