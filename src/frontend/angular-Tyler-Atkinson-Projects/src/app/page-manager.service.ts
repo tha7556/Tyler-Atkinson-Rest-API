@@ -5,6 +5,7 @@ import { Injectable, ElementRef } from '@angular/core';
 })
 export class PageManagerService {
   public index: number;
+  public projectIndex: number;
   private navElements: ElementRef[];
   constructor() { }
   setElements(elements: ElementRef[]) {
@@ -13,6 +14,11 @@ export class PageManagerService {
   setIndex(index: number) {
     this.index = index;
     this.updateNavBar();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  setProjectIndex(index: number) {
+    this.projectIndex = index;
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }

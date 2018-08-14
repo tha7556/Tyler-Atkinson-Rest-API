@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageManagerService } from '../page-manager.service';
 
 @Component({
   selector: 'app-project-list',
@@ -6,16 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./project-list.component.css']
 })
 export class ProjectListComponent implements OnInit {
-  index: number;
-  constructor() { }
+  constructor(public pageManager: PageManagerService) { }
 
   ngOnInit() {
-    this.index = -1;
-  }
-  changeIndex(index: number) {
-    this.index = index;
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    this.pageManager.projectIndex = -1;
   }
 
 }

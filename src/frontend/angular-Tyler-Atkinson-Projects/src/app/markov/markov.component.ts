@@ -27,7 +27,7 @@ export class MarkovComponent implements OnInit {
     this.markovService.getTweets(this.user, this.numberOfResults).subscribe(tweets => {this.running = false; this.tweets = tweets; },
       err => {
       this.running = false;
-      throw new Error(err.error); });
+      throw new Error('Unable to connect to server'); });
   }
 
 }
