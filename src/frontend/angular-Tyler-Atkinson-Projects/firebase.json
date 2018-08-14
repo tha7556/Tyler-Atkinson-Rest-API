@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/angular-Tyler-Atkinson-Projects",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

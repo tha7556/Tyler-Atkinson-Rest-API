@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Tyler Atkinson</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <a #welcomeButton class="navbar-brand myLink" (click)="pageManager.setIndex(3)">Tyler Atkinson</a> </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li #aboutButton class="active"><a class="myLink" (click)="pageManager.setIndex(0)">About</a></li>
+        <li #contactButton class="inactive"><a class="myLink" (click)="pageManager.setIndex(1)">Contact</a></li>
+        <li #projectButton class="inactive"><a class="myLink" (click)="pageManager.setIndex(2)">Projects</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br/>
+<br/>
+<div class="container">
+  <div class="jumbotron mt-5">
+    <h1 class="text-center">Tyler Atkinson</h1>
+  </div>
+</div>
+
+
+<div class="container" *ngIf="pageManager.index === 0">
+  <app-about></app-about>
+</div>
+<div class="container" *ngIf="pageManager.index === 1">
+  <app-contact></app-contact>
+</div>
+<div class="container" *ngIf="pageManager.index === 2">
+    <app-project-list></app-project-list>
+</div>
+<div class="container" *ngIf="pageManager.index === 3">
+    <app-welcome></app-welcome>
+</div>
+
+ 
+
+<div class="container" style="position: relative; top: 80vh;margin-top: -100px;">
+	<footer class="jumbotron">
+		<table class="table text-centered">
+		<tbody>
+		<tr>
+      <th></th>
+      <th></th>
+      <th></th>
+			<th><a (click)="pageManager.setIndex(3)" class="myLink">Home</a></th>
+      <th><a (click)="pageManager.setIndex(0)" class="myLink">About</a></th>
+      <th><a (click)="pageManager.setIndex(1)" class="myLink">Contact</a></th>
+			<th><a (click)="pageManager.setIndex(2)" class="myLink">Projects</a></th>
+		</tr>	
+		</tbody>
+	  </table>
+  </footer>
+</div>
+</body>
+</html>

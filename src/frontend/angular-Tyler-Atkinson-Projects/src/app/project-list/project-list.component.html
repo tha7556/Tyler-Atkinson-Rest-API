@@ -1,0 +1,55 @@
+<div class="container" *ngIf="index === -1">
+  <h2>My Projects</h2>
+  <p>Below are various projects that I have modified to run on a Java Spring server. This site is able to run them through a REST API.</p>
+
+  <h3><a (click)="changeIndex(0)" class="myLink">Neural Network: Backpropagation</a></h3>
+  <p>A Project for CSC 415: Artificial Intelligence. Implementation includes a Neural Network trained through Backpropagation
+    to learn logic tables in Java. You can learn more about Backpropagation
+    <a href="http://neuralnetworksanddeeplearning.com/chap2.html">here</a>, and you can experiment with my implementation in Java
+    <a (click)="changeIndex(0)" class="myLink">here</a>. </p>
+
+  <h3><a (click)="changeIndex(1)" class="myLink">Tweet Generator: Markov Chains</a></h3>
+  <p>A Project for CSC 415: Artificial Intelligence. Implementation includes using Markov Chains to access the Twitter API and
+    study a users tweets. After the Markov Chain is finished analyzing the tweets, it is able to generate tweets that are similar
+    to the given user. You can learn more about Markov Chains
+    <a href="https://www.datacamp.com/community/tutorials/markov-chains-python-tutorial">here</a>, and you can experiment with my implementation in Java
+    <a (click)="changeIndex(1)" class="myLink">here</a>.</p>
+
+  <h3><a (click)="changeIndex(2)" class="myLink">Matricies</a></h3>
+  <p>A Project for CSC 340: Scientific Computing. Contains various methods used to work with Matricies. Utilized for most of my
+    projects in this class. You can experiment with my implementation in Java
+    <a (click)="changeIndex(2)" class="myLink">here</a>.</p>
+
+  <h3><a (click)="changeIndex(3)" class="myLink">Traveling Salesman</a></h3>
+  <p>A Project for CSC 340: Scientific Computing. Used two different methods for solving the classic Traveling Salesman Problem
+    in Java.
+  </p>
+  <p>
+    <b>Genetic Algorithm:</b> Simulates evolution, representing each city as a gene. Fitness is measured by 1/distance, where
+    routes with smaller distances are more likely to pass on their genes. You can learn more about Genetic Algorithms
+    <a href="https://towardsdatascience.com/introduction-to-genetic-algorithms-including-example-code-e396e98d8bf3">here</a>.</p>
+  <p>
+    <b>Simulated Annealing:</b> Simulates annealing used in metallurgy. It begins with a high temperature and as it runs the temperature
+    is cooled. It continues to run until the temperature has completely cooled. When the temperature is high, the algorithm
+    is more likely to accept a new route. When the temperature is low, the opposite is true. The slower the cooling rate, the
+    more likely that the algorithm will find the best route. You can learn more about Simulated Annealing
+    <a href="https://en.wikipedia.org/wiki/Simulated_annealing">here</a>.
+  </p>
+  <p>You can experiment with the two implementations
+    <a (click)="changeIndex(3)" class="myLink">here</a>.</p>
+</div>
+<div class="container" *ngIf="index !== -1">
+  <button (click)="changeIndex(-1)">Go Back</button>
+</div>
+<div class="container" *ngIf="index === 0">
+  <app-backpropagation-network></app-backpropagation-network>
+</div>
+<div class="container" *ngIf="index === 1">
+  <app-markov></app-markov>
+</div>
+<div class="container" *ngIf="index === 2">
+  <app-matrix></app-matrix>
+</div>
+<div class="container" *ngIf="index === 3">
+  <app-tsp></app-tsp>
+</div>

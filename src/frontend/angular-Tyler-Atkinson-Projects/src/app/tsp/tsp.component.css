@@ -1,0 +1,21 @@
+.box {
+    background:rgb(255,255,255);
+    border: 1px solid black;
+}
+.line {
+    stroke:rgb(0,0,0);
+    stroke-width:4;
+}
+.cityText {
+    cursor:move;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    font-size:35px;
+    fill:black;
+}
+.city {
+    stroke: black;
+    stroke-width: 4;
+    fill: teal;
+}

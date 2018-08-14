@@ -21,7 +21,7 @@ public class TweetChain {
 		this.table = new HashMap<>();
 		max = -1;
 		min = Integer.MAX_VALUE;
-		putAllTweetsInTable();		
+		putAllTweetsInTable();
 	}
 	public String writeTweet() {
 		ArrayList<String> tweet = new ArrayList<>();

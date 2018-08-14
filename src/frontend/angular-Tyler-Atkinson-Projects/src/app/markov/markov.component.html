@@ -1,0 +1,56 @@
+<div class="container">
+  <h2>Markov Tweet Generator</h2>
+  <!--Description-->
+  <h3>Background</h3>
+  <p>Markov Chains are a form of AI that uses past behavior to predict future decisions. A common example of this AI is predictive
+    text in smartphone keyboards or in google search.
+  </p>
+  <h4>Training</h4>
+  <p>To train a Markov Chain, a large amount of data must be given to it. The more data, the more accurate the model is. In this case, the data it takes in is all of the tweets for the given user. It is important for the user
+    to post (not repost) frequently, and post text without images. This model ignores reposts and image posts.
+  </p>
+  <p>Once the model has the data, it begins to deconstruct it. It makes a transition table looking at the number of times a word
+    is followed by another word. It uses these transitions to determine which word should come next. For example if it had
+    the sentence "The dog jumped over the cat", the transition table would see that "the" has two options: "dog" and "cat".
+    These transitions each only occur once, so they both have an equal chance of being selected. Because of that, the chain
+    would likely generate something similar to: "The dog jumped over the dog jumped over the cat". Having more data would cut
+    down the chances of it repeating itself like this.
+  </p>
+  <p>
+    To determine which words start and end the tweet, a null word is added to the beginning and end. It treats them just like
+    any word, except it always starts with it and whenever it is selected the tweet is marked as complete.
+  </p>
+  <p>
+    <b>The training stage can take a while because it has to access the Twitter API to gather all tweets from the user.</b>
+  </p>
+  <h4>Running</h4>
+  <p>Now that the model has its transition table set up, it is fairly easy to generate tweets. It first looks at all of the words
+    that tweets from the user usually start with. It randomly selects one based on the frequency that a tweet starts with that
+    word. Once it has selected the first word, it looks at which words usually follow that word. It repeats the same process
+    to select the next word and continues the process until the null word is selected.
+  </p>
+  <h4>Source</h4>
+  <p>Here is the original source code for this project: <a href="https://github.com/tha7556/Ai-Markov-Chains">[source]</a>.</p>
+  <p>And here is the source code running the Tweet generator below: <a href="https://github.com/tha7556/Tyler-Atkinson-Rest-API/tree/master/src/main/java/com/projects/markov">[source]</a></p>
+  <h3>Usage</h3>
+  <p>
+    The Markov chain is very easy to run. Just enter the Twitter username of the person you want the model to imitate, enter
+    the desired number of results, and press submit. A message will pop up if the user does not exist, is private, or hasn't posted anything.
+  </p>
+  <!--Functionality-->
+  <div class="myContainer">
+    <div>
+      <input [(ngModel)]="user" placeholder="Twitter Handle" />
+      <input [(ngModel)]="numberOfResults" placeholder="Number of Results" type="number" min="1" max="20" />
+    </div>
+    <button (click)="submit()">Submit</button>
+    <div *ngIf="tweets">
+      <div *ngFor="let tweet of tweets">
+        <app-tweet text={{tweet.tweet}} user={{tweet.user}} name="{{tweet.name}}" imageUrl="{{tweet.imageUrl}}"></app-tweet>
+      </div>
+    </div>
+      <div *ngIf="running" class="spinnerContainer">
+        <mat-spinner class="spinner" style="margin-top: 0"></mat-spinner>
+      </div>
+  </div>
+</div>

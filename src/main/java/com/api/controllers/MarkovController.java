@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import twitter4j.TwitterException;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
+@CrossOrigin(origins = "*")
 @RestController
 public class MarkovController {
 
@@ -25,12 +25,12 @@ public class MarkovController {
     public ResponseEntity<?> getTweets(@PathVariable String user, @PathVariable long quantity) {
         try {
             if (quantity < 1000 && quantity > -1)
-                return new ResponseEntity<>(new Markov(user).getTweets((int)quantity), new HttpHeaders(), HttpStatus.OK);
+                return new ResponseEntity<>(new Markov(user.trim()).getTweets((int)quantity), new HttpHeaders(), HttpStatus.OK);
             else
                 return new ResponseEntity<>("Quantity must be within [0,1000)",HttpStatus.BAD_REQUEST);
         }
         catch(TwitterException exception) {
-            return new ResponseEntity<>("Something went wrong while gathering tweets, likely an incorrect twitter handle",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Something went wrong while gathering tweets, likely an incorrect twitter handle or the user hasn't posted any tweets",HttpStatus.NOT_FOUND);
         }
 
 

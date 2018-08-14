@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class MatrixController {
     @RequestMapping(value = {"/matrix/add"}, method = RequestMethod.POST)
@@ -36,7 +37,7 @@ public class MatrixController {
     }
     @RequestMapping(value = {"/matrix/multiply"}, method = RequestMethod.POST)
     public ResponseEntity<?> multiply(@RequestBody double[][][] matrices) {
-        if(matrices == null || matrices.length != 2 || matrices[0].length < 1 || matrices[1].length < 1 || matrices[0][0].length < 1 || matrices[0][1].length < 1) {
+        if(matrices == null || matrices.length != 2 || matrices[0].length < 1 || matrices[1].length < 1 || matrices[0][0].length < 1 || matrices[1][0].length < 1) {
             return new ResponseEntity<>("Must enter exactly 2 matrices, both with at least one value",HttpStatus.BAD_REQUEST);
         }
         Matrix a = new Matrix(matrices[0]);
@@ -76,15 +77,31 @@ public class MatrixController {
         if(matrix == null || matrix.length < 1 || matrix[0].length < 1) {
             return new ResponseEntity<>("Must enter a Matrix with at least one value",HttpStatus.BAD_REQUEST);
         }
-        double result = new Matrix(matrix).findDeterminant();
-        return new ResponseEntity<>(result, new HttpHeaders(), HttpStatus.OK);
+        Matrix mat = new Matrix(matrix);
+        if(!mat.isSquare()) {
+            return new ResponseEntity<>("Matrix must be square", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(mat.findDeterminant(), new HttpHeaders(), HttpStatus.OK);
     }
     @RequestMapping(value = {"/matrix/inverse"}, method = RequestMethod.POST)
     public ResponseEntity<?> getInverse(@RequestBody double[][] matrix) {
         if(matrix == null || matrix.length < 1 || matrix[0].length < 1) {
             return new ResponseEntity<>("Must enter a Matrix with at least one value",HttpStatus.BAD_REQUEST);
         }
-        Matrix result = new Matrix(matrix).getInverse();
+        Matrix mat = new Matrix(matrix);
+        if(!mat.isSquare()) {
+            return new ResponseEntity<>("There is no inverse for the given Matrix", HttpStatus.BAD_REQUEST);
+        }
+        Matrix result = mat.getInverse();
+        if(result == null)
+            return new ResponseEntity<>("There is no inverse for the given Matrix", HttpStatus.BAD_REQUEST);
+        for(double[] arr : result.getMatrix()) {
+            for(double d : arr) {
+                if(Double.isInfinite(d) || Double.isNaN(d)) {
+                    return new ResponseEntity<>("Matrix has no inverse", HttpStatus.NOT_FOUND);
+                }
+            }
+        }
         return new ResponseEntity<>(result.getMatrix(), new HttpHeaders(), HttpStatus.OK);
     }
     @RequestMapping(value = {"/matrix/append"}, method = {RequestMethod.POST})

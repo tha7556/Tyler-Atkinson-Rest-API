@@ -1,0 +1,15 @@
+.tweet {
+    background: white;
+}
+.name {
+    font-weight: bold;
+    word-break: break-all;
+    font-size: 14px;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+.tag {
+    font-weight: normal;
+    color: #657786;
+    font-size: 14px;
+    font-family: "Segoe UI",Arial,sans-serif;
+}

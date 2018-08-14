@@ -1,0 +1,98 @@
+<div class="container">
+  <h2>Matrix Operations</h2>
+  <!--Description-->
+  <h3>Background</h3>
+  
+  <p>A Matrix calculator to perform various matrix operations.</p>
+  <h4>Source</h4>
+  <p>Here is the original source code for this project: <a href="https://github.com/tha7556/Matrices">[source]</a>.</p>
+  <p>And here is the source code running the Matricies below: <a href="https://github.com/tha7556/Tyler-Atkinson-Rest-API/tree/master/src/main/java/com/projects/matricies">[source]</a></p>
+  <h3>Usage</h3>
+  <p>Move the sliders to resize the Matricies. Then you can set the values inside of the Matricies and perform operations on them.</p>
+  <h4>Transpose</h4>
+  <p>This function will replace the Matrix with its <a href="https://en.wikipedia.org/wiki/Transpose">transpose</a>.</p>
+  <h4>Inverse</h4>
+  <p>This function will replace the Matrix with its <a href="https://www.mathsisfun.com/algebra/matrix-inverse.html">inverse</a> (if it has one). The Matrix must be square for this function to work.</p>
+  <h4>Identity</h4>
+  <p>This function will replace the Matrix with the <a href="https://en.wikipedia.org/wiki/Identity_matrix">identity matrix</a> of the same width as the Matrix.</p>
+  <h4>Determinant</h4>
+  <p>This function will calculate the <a href="https://www.mathsisfun.com/algebra/matrix-determinant.html">determinant</a> of the Matrix and display it below. The Matrix must be square for this function to work.</p>
+  <h4>Scalar Multiplication</h4>
+  <p>This function will multiply the Matrix by the scalar to the right of the Scalar Multiplication button, and replace the Matrix with the result.</p>
+  <h4>Addition</h4>
+  <p>This function adds the two Matricies together, and displays the result below. The Matricies must be the same size for this function to work.</p>
+  <h4>Subtraction</h4>
+  <p>This function subtracts the second Matrix from the first, and displays the result below. The Matricies must be the same size for this function to work.</p>
+  <h4>Multiplication</h4>
+  <p>This function <a href="https://www.mathsisfun.com/algebra/matrix-multiplying.html">multiplies</a> the two Matricies together, and displays the result below. The width of the first Matrix must equal the height of the second Matrix for this function to work.</p>
+  <h4>Append</h4>
+  <p>This function appends the two Matricies together, and displays the result below. The Matricies must have the same height for this function to work.</p>
+  <!--Functionality-->
+  <div class="myContainer">
+    <!--Left Block-->
+    <div style="display:inline-block">
+      <button (click)="transpose('A')">Transpose</button>
+      <button (click)="inverse('A')">Inverse</button>
+      <br/>
+      <button (click)="identity('A')">Identity</button>
+      <button (click)="determinant('A')">Determinant</button>
+      <br/>
+      <button (click)="scalarMultiplication('A')">Scalar Multiplication</button>
+      <input style="width: 45px" [(ngModel)]="scalarA" type="number" value="1" />
+      <input type="range" min="1" max="{{max}}" [(ngModel)]="widthA" (ngModelChange)="resize('A')">
+      <div style="display:inline-block">
+        <input type="range" min="1" max={{max}} orient="vertical" [(ngModel)]="heightA" (ngModelChange)="resize('A')" style="float:left; margin-left: 0;">
+      </div>
+      <!--Left Matrix-->
+      <div style="display: inline-block; position: absolute; margin-left: 5px">
+        <div *ngFor="let row of matrixA; let i = index; trackBy: customTrackBy">
+          <span *ngFor="let column of row; let j = index; trackBy: customTrackBy;">
+            <input size="1" value=0 onfocus="this.value=''" onfocusout="if (this.value === '') { this.value = 0; }" [(ngModel)]="matrixA[i][j]"/>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!--Right Block-->
+    <div style="display:inline-block; height:50dp; position: absolute; margin-left: 10px">
+      <button (click)="transpose('B')">Transpose</button>
+      <button (click)="inverse('B')">Inverse</button>
+      <br/>
+      <button (click)="identity('B')">Identity</button>
+      <button (click)="determinant('B')">Determinant</button>
+      <br/>
+      <button (click)="scalarMultiplication('B')">Scalar Multiplication</button>
+      <input style="width: 45px" [(ngModel)]="scalarB" type="number" value="1" />
+      <input type="range" min="1" max="{{max}}" [(ngModel)]="widthB" (ngModelChange)="resize('B')">
+      <div style="display:inline-block;">
+        <input type="range" min="1" max="{{max}}" orient="vertical" [(ngModel)]="heightB" (ngModelChange)="resize('B')" style="float:left;">
+        <!--Right Matrix-->
+        <div style="display: inline-block; position: absolute; margin-left: 5px">
+          <div *ngFor="let row of matrixB; let i = index; trackBy: customTrackBy">
+            <span *ngFor="let column of row; let j = index; trackBy: customTrackBy;">
+              <input size="1" value=0 onfocus="this.value=''" onfocusout="if (this.value === '') { this.value = 0; }" [(ngModel)]="matrixB[i][j]"/>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <button (click)="add()">Add</button>
+    <button (click)="subtract()">Subtract</button>
+    <button (click)="multiply()">Multliply</button>
+    <button (click)="append()">Append</button>
+    <div *ngIf="resultMatrix.length > 0 && resultMatrix[0].length > 0">Result:
+      <div *ngFor="let row of resultMatrix">
+        <span *ngFor="let column of row">
+          {{column | number : '.3-3'}}
+        </span>
+      </div>
+    </div>
+    <div *ngIf="resultBool">
+      Result:
+      <br/>{{resultValue | number : '.3-3'}}
+    </div>
+    <div *ngIf="running" class="spinnerContainer">
+      <mat-spinner class="spinner"></mat-spinner>
+    </div>
+  </div>
+</div>

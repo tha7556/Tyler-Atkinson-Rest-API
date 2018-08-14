@@ -113,7 +113,7 @@ public class Network implements Serializable{
 			DecimalFormat decimalFormat = new DecimalFormat("#.000000000000000000000");
 			//if(j % 50 == 0 || j==0)
 				//com.projects.backpropagation.Network.write(j+","+error+","+weightMap.get(inputNodes.get(0).getName()+"+"+hiddenNodes.get(0).getName()).getValue()+","+weightMap.get(hiddenNodes.get(0).getName()+"+"+outputNodes.get(0).getName()).getValue(),"E:\\\\ComputerScience\\\\Workspace\\\\Ai Project1\\\\ShapeError.csv",true);
-			//System.out.println(j+","+decimalFormat.format(error));
+			//System.out.println(decimalFormat.format(error));
 			calculateNewWeights();
 			
 		}

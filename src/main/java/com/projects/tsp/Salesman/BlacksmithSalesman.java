@@ -16,6 +16,9 @@ public class BlacksmithSalesman extends Salesman {
         rand = new Random();
     }
     public void compute() {
+        if(cities.length < 4) {
+            return;
+        }
         while(temperature > 0.00000001) {
             Route newRoute = currentRoute;
             int swapIndex1 = (int)(rand.nextDouble()*(cities.length-1)+1);

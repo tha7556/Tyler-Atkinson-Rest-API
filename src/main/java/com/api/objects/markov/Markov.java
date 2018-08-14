@@ -16,10 +16,16 @@ public class Markov {
     public String getUser() {
         return user;
     }
+    public String getName() {
+        return dictionary.getName();
+    }
+    public String getImageUrl() {
+        return dictionary.getImageUrl();
+    }
     public Tweet[] getTweets(int number) {
         Tweet[] result = new Tweet[number];
         for(int i = 0; i < number; i++) {
-            result[i] = new Tweet(user,chain.writeTweet());
+            result[i] = new Tweet(user,chain.writeTweet(), getName(), getImageUrl());
         }
         return result;
     }

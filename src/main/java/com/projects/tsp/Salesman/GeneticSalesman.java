@@ -35,7 +35,7 @@ public class GeneticSalesman extends Salesman {
      * @param cities The Array of Cities
      */
     public GeneticSalesman(City[] cities) {
-        this(cities, 5000);
+        this(cities, 8000);
     }
 
     /**

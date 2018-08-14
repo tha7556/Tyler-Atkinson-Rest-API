@@ -1,0 +1,113 @@
+<div class="container myContainer">
+  <h2>Backpropagation</h2>
+  <!--Description-->
+  <h3>Background</h3>
+  <p>This is a neural network trained through Backpropagation to learn logic tables.
+    This type of network is composed of an input layer of nodes, a hidden layer (or layers), and an output layer.
+    Each node in a layer is connected to each node in the next layer. Each of those connections has a weight which is initialized randomly.
+    The input layer has a number of nodes equal to the number of inputs there are, the same being for output.
+    The hidden layer can be variable. There can be multiple hidden layers, each with any number of nodes.
+    Generally there should be at least as many hidden nodes as there are input nodes.
+    For this network, there is one hidden layer and three hidden nodes.
+  </p>
+  <h4>Training</h4>
+  <p>During the training phase, the network is run continuously.
+    Each time that it produces an output, it compares the output to the desired output.
+    It calculates the error and sends it backwards through the network, adjusting the weights between each node based on that error.
+    It repeats this process until the total error is below the target error, which for this network is set to {{settings.targetError}}.
+  </p>
+  <h4>Running</h4>
+  <p>Once the training is complete, the network is able to estimate the resulting value of the given truth table.
+    The input is passed into the input layer, and the output nodes are calculated using the <a href="https://en.wikipedia.org/wiki/Sigmoid_function">sigmoid</a>
+    function and the weights calculated in the training step.
+  </p>
+  <h4>Source</h4>
+  <p>Here is the original source code for this project: <a href="https://github.com/tha7556/Ai-Backpropagation">[source]</a>.</p>
+  <p>And here is the source code running the network below: <a href="https://github.com/tha7556/Tyler-Atkinson-Rest-API/tree/master/src/main/java/com/projects/backpropagation">[source]</a></p>
+  <h3>Usage</h3>
+  <h4>Training Set</h4>
+  <p>
+    To train the Network, fill in the truth table by setting the values of the output to either 0 or 1 depending on what the 2 inputs are to the left.
+    Once you are satisfied with your truth table hit train to create a new neural network.
+  </p>
+  <h4>Run The Network</h4>
+  <p>
+    Now that you have your neural network set up, it should be displayed below. 
+    The first two nodes are the input nodes, the middle three are the hidden nodes, and the last one is the output node.
+    To set the inputs, just click on them to turn them on or off (1 or 0). 
+    Once you have entered the inputs, just hit run and see the output node change.
+  </p>
+  <!--Functionality-->
+  <div class="myContainer">
+  <div *ngIf="inTraining">
+    <h3>Training Set</h3>
+    <table>
+      <tr>
+        <td>1</td>
+        <td>0</td>
+        <td><input [(ngModel)]="trainingOutput[0][0]" class="trainingInput" type="number" max="1" min="0" value="0"/></td>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>1</td>
+        <td><input [(ngModel)]="trainingOutput[1][0]" class="trainingInput" type="number" max="1" min="0" value="0"/></td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>1</td>
+        <td><input [(ngModel)]="trainingOutput[2][0]" class="trainingInput" type="number" max="1" min="0" value="0"/></td>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>0</td>
+        <td><input [(ngModel)]="trainingOutput[3][0]" class="trainingInput" type="number" max="1" min="0" value="0"/></td>
+      </tr>
+    </table>
+    <button (click)="train()">Train</button><br/>
+  </div>
+  <div *ngIf="!inTraining">
+    <h3>Run The Network</h3>
+    <button (click)="runNetwork()">Run</button>
+    <button (click)="inTraining=true; networkOutput=-1">Back</button>
+    <br/>
+    <svg width="400" height="300" class="box">
+      <g *ngFor="let line of connections">
+        <line [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" class="line"/>
+      </g>
+      <g *ngFor="let node of inputNodes">
+        <g *ngIf="node.value">
+          <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="white" (click)="changeInput(node)" class="runInput"/>
+        </g>
+        <g *ngIf="!node.value">
+          <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="grey" (click)="changeInput(node)" class="runInput"/>
+        </g>
+      </g>
+      <g *ngFor="let node of hiddenNodes">
+        <g *ngIf="node.value">
+          <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="white"/>
+        </g>
+        <g *ngIf="!node.value">
+        <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="grey"/>
+        </g>
+      </g>
+      <g *ngFor="let node of outputNodes">
+        <g *ngIf="node.value">
+          <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="white"/>
+        </g>
+        <g *ngIf="!node.value">
+          <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="grey"/>
+        </g>
+      </g>
+      <circle [attr.cx]="60" [attr.cy]="230" r="5" stroke="black" stroke-width="1" fill="grey"/>
+      <text x="70" y="234">Off</text>
+      <circle [attr.cx]="60" [attr.cy]="260" r="5" stroke="black" stroke-width="1" fill="white"/>
+      <text x="70" y="264">On</text>
+    </svg>
+  </div>
+
+  <div *ngIf="running" class="spinnerContainer">
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
+</div>
+</div>
+

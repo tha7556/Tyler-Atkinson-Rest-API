@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class SalesmanController {
 
@@ -19,7 +20,7 @@ public class SalesmanController {
             return new ResponseEntity<>("The number of cities should be between [2, 26]",HttpStatus.BAD_REQUEST);
         GeneticSalesman salesman = new GeneticSalesman(cities);
         salesman.compute();
-        return new ResponseEntity<>(salesman.getBestRoute(), new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<>(salesman.getBestRoute().getCities(), new HttpHeaders(), HttpStatus.OK);
     }
     @RequestMapping(value = {"/salesman/genetic/{numCities}"},method = RequestMethod.GET)
     public ResponseEntity<?> calculateGenetic(@PathVariable long numCities) {
@@ -32,7 +33,7 @@ public class SalesmanController {
         }
         GeneticSalesman salesman = new GeneticSalesman(cities);
         salesman.compute();
-        return new ResponseEntity<>(salesman.getBestRoute(), new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<>(salesman.getBestRoute().getCities(), new HttpHeaders(), HttpStatus.OK);
     }
     @RequestMapping(value = {"/salesman/annealing"}, method = RequestMethod.POST)
     public ResponseEntity<?> calculateSimulatedAnnealing(@RequestBody City[] cities) {
@@ -40,7 +41,7 @@ public class SalesmanController {
             return new ResponseEntity<>("The number of cities should be between [2, 26]",HttpStatus.BAD_REQUEST);
         BlacksmithSalesman salesman = new BlacksmithSalesman(cities);
         salesman.compute();
-        return new ResponseEntity<>(salesman.getBestRoute(), new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<>(salesman.getBestRoute().getCities(), new HttpHeaders(), HttpStatus.OK);
     }
     @RequestMapping(value = {"/salesman/annealing/{numCities}"},method = RequestMethod.GET)
     public ResponseEntity<?> calculateSimulatedAnnealing(@PathVariable long numCities) {
@@ -53,7 +54,7 @@ public class SalesmanController {
         }
         BlacksmithSalesman salesman = new BlacksmithSalesman(cities);
         salesman.compute();
-        return new ResponseEntity<>(salesman.getBestRoute(), new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<>(salesman.getBestRoute().getCities(), new HttpHeaders(), HttpStatus.OK);
     }
 
 }

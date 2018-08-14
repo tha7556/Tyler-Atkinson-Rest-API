@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+.spinnerContainer{
+    background: rgba(192, 192, 192, .3);
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    top: 0px
+}
+.spinner {
+    margin: 10% auto;
+}
+.myContainer {
+    position: relative;
+}
+.myLink {
+    cursor: pointer;
+}
