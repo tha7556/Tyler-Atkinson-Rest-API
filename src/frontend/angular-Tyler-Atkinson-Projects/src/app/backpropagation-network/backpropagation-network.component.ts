@@ -71,7 +71,6 @@ export class BackpropagationNetworkComponent implements OnInit {
           }
         }
       }
-      console.log(this.settings);
       this.backpropagationService.trainNetwork(this.settings).subscribe(network => this.finishNetwork(network),
       err => {
         this.running = false;
