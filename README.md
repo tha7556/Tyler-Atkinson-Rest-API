@@ -1,6 +1,7 @@
 # Tyler-Atkinson-Rest-API
-A REST API to access and run some of my previous Java projects, made with the Spring framework
-<br/><i>(Not yet on a server)</i>
+A REST API to access and run some of my previous Java projects, made with the Spring framework. Also contains an angular frontend that accesses each of these.
+<br/>Backend: <a href="https://tyler-atkinson-api.herokuapp.com/">https://tyler-atkinson-api.herokuapp.com/</a>
+<br/>Frontend: <a href="https://tyler-atkinson.firebaseapp.com/">https://tyler-atkinson.firebaseapp.com/</a>
 
 Calls available so far:
 
