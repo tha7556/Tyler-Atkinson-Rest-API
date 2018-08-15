@@ -70,39 +70,41 @@
     <button (click)="runNetwork()">Run</button>
     <button (click)="inTraining=true; networkOutput=-1">Back</button>
     <br/>
-    <svg width="400" height="300" class="box">
-      <g *ngFor="let line of connections">
-        <line [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" class="line"/>
-      </g>
-      <g *ngFor="let node of inputNodes">
-        <g *ngIf="node.value">
-          <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="white" (click)="changeInput(node)" class="runInput"/>
+    <div class="container">
+      <svg class="box" style="margin-left:0; padding: 0;" preserveAspectRatio="xMidYMid meet" viewBox="0 0 500 300">
+        <g *ngFor="let line of connections">
+          <line [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" class="line"/>
         </g>
-        <g *ngIf="!node.value">
-          <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="grey" (click)="changeInput(node)" class="runInput"/>
+        <g *ngFor="let node of inputNodes">
+          <g *ngIf="node.value">
+            <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="white" (click)="changeInput(node)" class="runInput"/>
+          </g>
+          <g *ngIf="!node.value">
+            <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="grey" (click)="changeInput(node)" class="runInput"/>
+          </g>
         </g>
-      </g>
-      <g *ngFor="let node of hiddenNodes">
-        <g *ngIf="node.value">
-          <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="white"/>
-        </g>
-        <g *ngIf="!node.value">
-        <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="grey"/>
-        </g>
-      </g>
-      <g *ngFor="let node of outputNodes">
-        <g *ngIf="node.value">
-          <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="white"/>
-        </g>
-        <g *ngIf="!node.value">
+        <g *ngFor="let node of hiddenNodes">
+          <g *ngIf="node.value">
+            <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="white"/>
+          </g>
+          <g *ngIf="!node.value">
           <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="grey"/>
+          </g>
         </g>
-      </g>
-      <circle [attr.cx]="60" [attr.cy]="230" r="5" stroke="black" stroke-width="1" fill="grey"/>
-      <text x="70" y="234">Off</text>
-      <circle [attr.cx]="60" [attr.cy]="260" r="5" stroke="black" stroke-width="1" fill="white"/>
-      <text x="70" y="264">On</text>
-    </svg>
+        <g *ngFor="let node of outputNodes">
+          <g *ngIf="node.value">
+            <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="white"/>
+          </g>
+          <g *ngIf="!node.value">
+            <circle [attr.cx]="node.x" [attr.cy]="node.y" r="20" stroke="black" stroke-width="4" fill="grey"/>
+          </g>
+        </g>
+        <circle [attr.cx]="10" [attr.cy]="230" r="5" stroke="black" stroke-width="1" fill="grey"/>
+        <text x="20" y="234">Off</text>
+        <circle [attr.cx]="10" [attr.cy]="260" r="5" stroke="black" stroke-width="1" fill="white"/>
+        <text x="20" y="264">On</text>
+      </svg>
+      </div>
   </div>
 
   <div *ngIf="running" class="spinnerContainer">
