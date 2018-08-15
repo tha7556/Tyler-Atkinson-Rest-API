@@ -30,7 +30,7 @@
   <!--Functionality-->
   <div class="myContainer">
     <!--Left Block-->
-    <div style="display:inline-block">
+    <div style="display:inline-block; min-width: 200px; position:relative">
       <button (click)="transpose('A')">Transpose</button>
       <button (click)="inverse('A')">Inverse</button>
       <br/>
@@ -44,7 +44,7 @@
         <input type="range" min="1" max={{max}} orient="vertical" [(ngModel)]="heightA" (ngModelChange)="resize('A')" style="float:left; margin-left: 0;">
       </div>
       <!--Left Matrix-->
-      <div style="display: inline-block; position: absolute; margin-left: 5px">
+      <div style="display: inline-block; position: absolute; margin-left: 5px;">
         <div *ngFor="let row of matrixA; let i = index; trackBy: customTrackBy">
           <span *ngFor="let column of row; let j = index; trackBy: customTrackBy;">
             <input size="1" value=0 onfocus="this.value=''" onfocusout="if (this.value === '') { this.value = 0; }" [(ngModel)]="matrixA[i][j]"/>
@@ -53,7 +53,7 @@
       </div>
     </div>
     <!--Right Block-->
-    <div style="display:inline-block; height:50dp; position: absolute; margin-left: 10px">
+    <div style="display:inline-block; height:50dp; position: relative; margin-left: 10px; min-width: 200px;">
       <button (click)="transpose('B')">Transpose</button>
       <button (click)="inverse('B')">Inverse</button>
       <br/>
