@@ -15,6 +15,7 @@ export class TSPComponent implements OnInit {
   private offsetY: number;
   private startTime: number;
   public running = false;
+  private preventScroll = false;
 
   public lines: Line[];
   @ViewChild('svg') private box: ElementRef;
@@ -42,11 +43,13 @@ export class TSPComponent implements OnInit {
         this.offsetX = event.touches[0].clientX;
         this.offsetY = event.touches[0].clientY;
         this.lines = [];
+        this.preventScroll = true;
       }
     }
   }
   mouseUp() {
     this.selected = null;
+    this.preventScroll = false;
   }
   mouseMove(event: MouseEvent | TouchEvent) {
     if (event instanceof MouseEvent) {
@@ -62,6 +65,9 @@ export class TSPComponent implements OnInit {
         this.selected.y += (event.touches[0].clientY - this.offsetY);
         this.offsetX = event.touches[0].clientX;
         this.offsetY = event.touches[0].clientY;
+        if (this.preventScroll) {
+          event.preventDefault();
+        }
       }
     }
   }
