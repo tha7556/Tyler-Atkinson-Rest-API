@@ -13,7 +13,6 @@ export class SalesmanService {
   constructor(private http: HttpClient, private web: WebService) { }
 
   runGeneticSalesman(cities: number | City[]): Observable<City[]> {
-    console.log('running genetic');
     if (typeof cities === 'number') {
       return this.http.get<City[]>(`${this.url}/genetic/${cities}`);
     }

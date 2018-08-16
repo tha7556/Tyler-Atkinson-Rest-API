@@ -1,5 +1,6 @@
 import { Component, ErrorHandler, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PageManagerService } from './page-manager.service';
+import { WebService } from './web.service';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +15,12 @@ export class AppComponent implements ErrorHandler, OnInit {
   @ViewChild('contactButton') contact: ElementRef;
   @ViewChild('projectButton') project: ElementRef;
   private navElements: ElementRef[];
-  constructor(public pageManager: PageManagerService) {}
+  constructor(public pageManager: PageManagerService, private web: WebService) {}
   ngOnInit() {
     this.navElements = [this.about, this.contact, this.project];
     this.pageManager.setElements(this.navElements);
     this.pageManager.setIndex(3);
+    this.web.checkStatus().subscribe(result => console.log(result), err => console.log(err));
   }
   handleError(error: any) {
     if (error.status === 0) {

@@ -38,12 +38,12 @@ export class BackpropagationNetworkComponent implements OnInit {
 
 
   ngOnInit() {
-    this.inputNodes = [{x: 60, y: 60, value: true},
-                       {x: 60, y: 140, value: false}];
-    this.hiddenNodes = [{x: 200, y: 30, value: true},
-                       {x: 200, y: 100, value: true},
-                       {x: 200, y: 170, value: true}];
-    this.outputNodes = [{x: 350, y: 100, value: false}];
+    this.inputNodes = [{x: 30, y: 60, value: true},
+                       {x: 30, y: 140, value: false}];
+    this.hiddenNodes = [{x: 170, y: 30, value: true},
+                       {x: 170, y: 100, value: true},
+                       {x: 170, y: 170, value: true}];
+    this.outputNodes = [{x: 320, y: 100, value: false}];
     this.connections = [];
     for (let i = 0; i < this.inputNodes.length; i++) {
       for (let j = 0; j < this.hiddenNodes.length; j++) {
@@ -84,6 +84,9 @@ export class BackpropagationNetworkComponent implements OnInit {
     this.running = false;
   }
   runNetwork() {
+    if (typeof this.network === 'undefined') {
+      throw new Error('The Network has not been trained');
+    }
     if (!this.running) {
       this.running = true;
       for (let i = 0; i < this.runInput.length; i++) {

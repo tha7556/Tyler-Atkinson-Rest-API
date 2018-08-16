@@ -15,6 +15,7 @@ export class TSPComponent implements OnInit {
   private offsetY: number;
   private startTime: number;
   public running = false;
+  private preventScroll = false;
 
   public lines: Line[];
   @ViewChild('svg') private box: ElementRef;
@@ -24,30 +25,50 @@ export class TSPComponent implements OnInit {
     this.cities = [];
     this.lines = [];
     this.cities.push({x: 138, y: 50, name: 'A'});
-    this.addCity();
-    this.addCity();
-    this.addCity();
+    this.cities.push({x: .60 * window.innerWidth, y: 125, name: 'B'});
+    this.cities.push({x: .50 * window.innerWidth, y: 300, name: 'C'});
+    this.cities.push({x: .25 * window.innerWidth, y: 170, name: 'D'});
   }
-  mouseDown(event: MouseEvent, item: City) {
-    if (!this.running) {
-      this.selected = item;
-      this.offsetX = event.clientX;
-      this.offsetY = event.clientY;
-      this.lines = [];
+  mouseDown(event: MouseEvent | TouchEvent, item: City) {
+    if (event instanceof MouseEvent) {
+      if (!this.running) {
+        this.selected = item;
+        this.offsetX = event.clientX;
+        this.offsetY = event.clientY;
+        this.lines = [];
+      }
+    } else {
+      if (!this.running && event.touches.length === 1) {
+        this.selected = item;
+        this.offsetX = event.touches[0].clientX;
+        this.offsetY = event.touches[0].clientY;
+        this.lines = [];
+        this.preventScroll = true;
+      }
     }
   }
   mouseUp() {
     this.selected = null;
+    this.preventScroll = false;
   }
-  mouseLeave() {
-    this.mouseUp();
-  }
-  mouseMove(event: MouseEvent) {
-    if (this.selected != null) {
-      this.selected.x += (event.clientX - this.offsetX);
-      this.selected.y += (event.clientY - this.offsetY);
-      this.offsetX = event.clientX;
-      this.offsetY = event.clientY;
+  mouseMove(event: MouseEvent | TouchEvent) {
+    if (event instanceof MouseEvent) {
+      if (this.selected != null) {
+        this.selected.x += (event.clientX - this.offsetX);
+        this.selected.y += (event.clientY - this.offsetY);
+        this.offsetX = event.clientX;
+        this.offsetY = event.clientY;
+      }
+    } else {
+      if (this.selected != null && event.touches.length === 1) {
+        this.selected.x += (event.touches[0].clientX - this.offsetX);
+        this.selected.y += (event.touches[0].clientY - this.offsetY);
+        this.offsetX = event.touches[0].clientX;
+        this.offsetY = event.touches[0].clientY;
+        if (this.preventScroll) {
+          event.preventDefault();
+        }
+      }
     }
   }
   addCity() {
@@ -58,7 +79,7 @@ export class TSPComponent implements OnInit {
       }
       const letter = String.fromCharCode(this.cities[this.cities.length - 1].name.charCodeAt(0) + 1);
       this.cities.push({x: Math.random() * this.box.nativeElement.width.baseVal.value,
-        y: Math.random() * this.box.nativeElement.width.baseVal.value, name: letter});
+        y: Math.random() * this.box.nativeElement.height.baseVal.value, name: letter});
     }
   }
   removeCity() {
@@ -79,7 +100,6 @@ export class TSPComponent implements OnInit {
     if (this.cities.length < 2) {
       throw new Error('There should be at least 2 cities');
     }
-    this.startTime = performance.now();
     this.running = true;
     this.salesmanService.runGeneticSalesman(this.cities).subscribe(result => this.displayLines(result),
     err => {
@@ -92,7 +112,6 @@ export class TSPComponent implements OnInit {
       return;
     }
     this.lines = [];
-    this.startTime = performance.now();
     this.running = true;
     this.salesmanService.runAnnealingSalesman(this.cities).subscribe(result => this.displayLines(result),
     err => {
@@ -101,8 +120,6 @@ export class TSPComponent implements OnInit {
     } );
   }
   displayLines(route: City[]) {
-    console.log(route);
-    console.log((performance.now() - this.startTime) / 100 + ' seconds');
     this.lines = [];
     for (let i = 0; i < route.length - 1; i++) {
       this.lines.push({x1: route[i].x, y1: route[i].y, x2: route[i + 1].x, y2: route[i + 1].y});
