@@ -41,7 +41,7 @@
       <input style="width: 45px" [(ngModel)]="scalarA" type="number" value="1" />
       <input type="range" min="1" max="{{max}}" [(ngModel)]="widthA" (ngModelChange)="resize('A')">
       <div style="display:inline-block">
-        <input type="range" min="1" max={{max}} orient="vertical" [(ngModel)]="heightA" (ngModelChange)="resize('A')" style="float:left; margin-left: 0; -webkit-appearance: slider-vertical; width: 15px;">
+        <input type="range" min="1" max={{max}} orient="vertical" [(ngModel)]="heightA" (ngModelChange)="resize('A')" style="float:left; margin-left: 0; -webkit-appearance: slider-vertical; width: 15px; writing-mode: bt-lr;">
       </div>
       <!--Left Matrix-->
       <div style="display: inline-block; position: absolute; margin-left: 5px;">
@@ -64,7 +64,7 @@
       <input style="width: 45px" [(ngModel)]="scalarB" type="number" value="1" />
       <input type="range" min="1" max="{{max}}" [(ngModel)]="widthB" (ngModelChange)="resize('B')">
       <div style="display:inline-block;">
-        <input type="range" min="1" max="{{max}}" orient="vertical" [(ngModel)]="heightB" (ngModelChange)="resize('B')" style="float:left; -webkit-appearance: slider-vertical; width: 15px;">
+        <input type="range" min="1" max="{{max}}" orient="vertical" [(ngModel)]="heightB" (ngModelChange)="resize('B')" style="float:left; margin-left: 0; -webkit-appearance: slider-vertical; width: 15px; writing-mode: bt-lr;">
         <!--Right Matrix-->
         <div style="display: inline-block; position: absolute; margin-left: 5px">
           <div *ngFor="let row of matrixB; let i = index; trackBy: customTrackBy">

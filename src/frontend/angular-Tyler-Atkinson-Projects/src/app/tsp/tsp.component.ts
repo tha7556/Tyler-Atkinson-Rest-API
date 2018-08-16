@@ -24,9 +24,9 @@ export class TSPComponent implements OnInit {
     this.cities = [];
     this.lines = [];
     this.cities.push({x: 138, y: 50, name: 'A'});
-    this.addCity();
-    this.addCity();
-    this.addCity();
+    this.cities.push({x: .60 * window.innerWidth, y: 125, name: 'B'});
+    this.cities.push({x: .50 * window.innerWidth, y: 300, name: 'C'});
+    this.cities.push({x: .25 * window.innerWidth, y: 170, name: 'D'});
   }
   mouseDown(event: MouseEvent, item: City) {
     if (!this.running) {
@@ -58,7 +58,7 @@ export class TSPComponent implements OnInit {
       }
       const letter = String.fromCharCode(this.cities[this.cities.length - 1].name.charCodeAt(0) + 1);
       this.cities.push({x: Math.random() * this.box.nativeElement.width.baseVal.value,
-        y: Math.random() * this.box.nativeElement.width.baseVal.value, name: letter});
+        y: Math.random() * this.box.nativeElement.height.baseVal.value, name: letter});
     }
   }
   removeCity() {
