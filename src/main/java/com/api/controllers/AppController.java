@@ -1,5 +1,6 @@
 package com.api.controllers;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,7 +14,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 public class AppController {
     @RequestMapping(value= {"/status"}, method = GET)
-    public ResponseEntity<?> getStatus() {
-        return new ResponseEntity<>("Server is online", HttpStatus.OK);
+    public ResponseEntity<String> getStatus() {
+        return new ResponseEntity<>("Server is online", new HttpHeaders(), HttpStatus.OK);
     }
 }
