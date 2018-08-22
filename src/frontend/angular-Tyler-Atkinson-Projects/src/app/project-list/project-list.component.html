@@ -1,24 +1,27 @@
 <div class="container" *ngIf="pageManager.projectIndex === -1">
-  <h2>My Projects</h2>
-  <p>Below are various projects that I have modified to run on a Java Spring server. This site is able to run them through a REST API.</p>
+  <h2>Runnable Projects</h2>
+  <p>Below are various projects of mine that I have modified to run on a Java Spring server. This site is able to run them through a REST API.</p>
 
   <h3><a (click)="pageManager.setProjectIndex(0)" class="myLink">Neural Network: Backpropagation</a></h3>
   <p>A Project for CSC 415: Artificial Intelligence. Implementation includes a Neural Network trained through Backpropagation
     to learn logic tables in Java. You can learn more about Backpropagation
     <a href="http://neuralnetworksanddeeplearning.com/chap2.html">here</a>, and you can experiment with my implementation in Java
-    <a (click)="pageManager.setProjectIndex(0)" class="myLink">here</a>. </p>
+    <a (click)="pageManager.setProjectIndex(0)" class="myLink">here</a>. 
+  </p>
 
   <h3><a (click)="pageManager.setProjectIndex(1)" class="myLink">Tweet Generator: Markov Chains</a></h3>
   <p>A Project for CSC 415: Artificial Intelligence. Implementation includes using Markov Chains to access the Twitter API and
     study a users tweets. After the Markov Chain is finished analyzing the tweets, it is able to generate tweets that are similar
     to the given user. You can learn more about Markov Chains
     <a href="https://www.datacamp.com/community/tutorials/markov-chains-python-tutorial">here</a>, and you can experiment with my implementation in Java
-    <a (click)="pageManager.setProjectIndex(1)" class="myLink">here</a>.</p>
+    <a (click)="pageManager.setProjectIndex(1)" class="myLink">here</a>.
+  </p>
 
   <h3><a (click)="pageManager.setProjectIndex(2)" class="myLink">Matricies</a></h3>
   <p>A Project for CSC 340: Scientific Computing. Contains various methods used to work with Matricies. Utilized for most of my
     projects in this class. You can experiment with my implementation in Java
-    <a (click)="pageManager.setProjectIndex(2)" class="myLink">here</a>.</p>
+    <a (click)="pageManager.setProjectIndex(2)" class="myLink">here</a>.
+  </p>
 
   <h3><a (click)="pageManager.setProjectIndex(3)" class="myLink">Traveling Salesman</a></h3>
   <p>A Project for CSC 340: Scientific Computing. Used two different methods for solving the classic Traveling Salesman Problem
@@ -27,7 +30,8 @@
   <p>
     <b>Genetic Algorithm:</b> Simulates evolution, representing each city as a gene. Fitness is measured by 1/distance, where
     routes with smaller distances are more likely to pass on their genes. You can learn more about Genetic Algorithms
-    <a href="https://towardsdatascience.com/introduction-to-genetic-algorithms-including-example-code-e396e98d8bf3">here</a>.</p>
+    <a href="https://towardsdatascience.com/introduction-to-genetic-algorithms-including-example-code-e396e98d8bf3">here</a>.
+  </p>
   <p>
     <b>Simulated Annealing:</b> Simulates annealing used in metallurgy. It begins with a high temperature and as it runs the temperature
     is cooled. It continues to run until the temperature has completely cooled. When the temperature is high, the algorithm
@@ -36,7 +40,53 @@
     <a href="https://en.wikipedia.org/wiki/Simulated_annealing">here</a>.
   </p>
   <p>You can experiment with the two implementations
-    <a (click)="pageManager.setProjectIndex(3)" class="myLink">here</a>.</p>
+    <a (click)="pageManager.setProjectIndex(3)" class="myLink">here</a>.
+  </p>
+
+  <h2>Non-Runnable Projects</h2>
+  <p>Below are some of my other projects which are unable to be run through the REST API.
+  </p>
+
+  <h3><a (click)="pageManager.setProjectIndex(4)" class="myLink">Exhaustive Traveling Salesman</a></h3>
+  <p>Still a part of the same CSC 340: Scientific Computing project as above.
+    However, instead of trying to find a clever way of of solving Traveling Salesman, the best route was realized by locating every possible instance.
+    You can read more about my work on this project <a (click)="pageManager.setProjectIndex(4)" class="myLink">here</a>.
+  </p>
+
+  <h3><a (click)="pageManager.setProjectIndex(5)" class="myLink">Maze Solver</a></h3>
+  <p>A Project for CSC 380: Algorithms.
+    Used three different methods for finding a path through the provided mazes. 
+    You can read more about my work on this project <a (click)="pageManager.setProjectIndex(5)" class="myLink">here</a>.
+  </p>
+  
+  <!-- <h3><a (click)="pageManager.setProjectIndex(6)" class="myLink">Workout App</a></h3>
+  <p>Android app made in Android Studio to record weights for each exercise at the gym.
+    Can support multiple users on the same phone so that one person can track his non-android friends, or in the case of a personal trainer.
+    You can read more about my work on this project <a (click)="pageManager.setProjectIndex(6)" class="myLink">here</a>.
+  </p> -->
+
+  <h3><a (click)="pageManager.setProjectIndex(7)" class="myLink">Sorting Visualizations</a></h3>
+  <p>Various sorting algorithms implemented in Java with the ability to visualize them during runtime.
+    You can read more about my work on this project <a (click)="pageManager.setProjectIndex(7)" class="myLink">here</a>.
+  </p>
+  
+  <!-- <h3><a (click)="pageManager.setProjectIndex(8)" class="myLink">PC Hawk Customs</a></h3>
+  <p>A Project for CSC 450: Database Design and CSC 450: Software Engineering.
+    Worked with four other students to design a virtual store for buying parts to build a pc in C#. 
+    It takes parts from PC Part Picker to set up the database.
+    Then the frontend takes that information to provide a ui to build and order a computer.
+    Unfortunately doesn't work outside of the UNCW campus at the moment as the backend is on a local server.
+    You can read more about my work on this project <a (click)="pageManager.setProjectIndex(8)" class="myLink">here</a>.
+  </p> -->
+
+  <h3><a (click)="pageManager.setProjectIndex(9)" class="myLink">Portfolio Website</a></h3>
+  <p>The website that you are currently on, designed to showcase my projects as well as get experience working with frontend technologies.
+    You can read more about my work on this project <a (click)="pageManager.setProjectIndex(9)" class="myLink">here</a>.
+  </p>
+
+
+
+
 </div>
 <div class="container" *ngIf="pageManager.projectIndex !== -1">
   <button (click)="pageManager.setProjectIndex(-1)">Go Back</button>
@@ -53,3 +103,21 @@
 <div class="container" *ngIf="pageManager.projectIndex === 3">
   <app-tsp></app-tsp>
 </div>
+<div class="container" *ngIf="pageManager.projectIndex === 4">
+  <app-exhaustive-tsp></app-exhaustive-tsp>
+</div>
+<div class="container" *ngIf="pageManager.projectIndex === 5">
+  <app-maze-solver></app-maze-solver>
+</div>
+<!-- <div class="container" *ngIf="pageManager.projectIndex === 6">
+  <app-workout></app-workout>
+</div> -->
+<div class="container" *ngIf="pageManager.projectIndex === 7">
+  <app-sorting></app-sorting>
+</div>
+<!-- <div class="container" *ngIf="pageManager.projectIndex === 8">
+  <app-pc-hawk></app-pc-hawk>
+</div> -->
+<div class="container" *ngIf="pageManager.projectIndex === 9">
+    <app-website></app-website>
+  </div>

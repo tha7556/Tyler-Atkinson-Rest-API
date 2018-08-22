@@ -1,0 +1,55 @@
+<h2>Maze Solver</h2>
+<h3>Background</h3>
+<p>Mazes are very simple puzzles that almost everyone is familiar with.
+    This makes it very interesting to watch run, especially for those not very familiar with the programming concepts behind it.
+    Here my partner and I implemented 3 different algorithms to solve mazes, each of which we called Maze Runners.
+</p>
+<h4>The Mazes</h4>
+<p>We tried to focus more on the solving of mazes, rather than their generation.
+    So we used the algorithm from <a href="http://weblog.jamisbuck.org/2010/12/27/maze-generation-recursive-backtracking">here</a> to create our mazes.
+    Each maze is simply connected, meaning that there are no loops and that all walls are connected.
+    We had 4 different categories for mazes:    
+</p>
+<ul>
+    <li>Small - 51x51 verticies</li>
+    <li>Medium - 101x101 verticies</li>
+    <li>Large - 201x201 verticies</li>
+    <li>Crazy - 1467x1467 verticies</li>
+</ul>
+<p>For each of these categories, we generated 200 samples to ensure that we had plenty of test data.
+</p>
+<h4>Junction Origination Runner</h4>
+<p>Our first runner is based on junction origination. Whenever it is faced with a choice it picks one at random. 
+    It continues to do so until it encounters a dead-end.
+    Once it does, it backtracks to the most recent junction.
+</p>
+<div style="text-align: center"><img src="https://raw.githubusercontent.com/tha7556/MazeSolver/master/Solutions/gifs/joMed.gif" style="width:250px;"></div>
+<p><i>In the above GIF, whenever it has to backtrack the junction is marked with a light blue square. 
+    Once it finds the correct path it begins highlighting it in green.</i></p>
+<h4>Wall Follower Runner</h4>
+<p>The Wall Follower Runner is set to follow either the left or the right wall.
+    Because the mazes are simply connected, it is able to follow the wall all the way until the end of the maze.
+</p>
+<div style="text-align: center"><img src="https://raw.githubusercontent.com/tha7556/MazeSolver/master/Solutions/gifs/leftMed.gif" style="width:250px;"><br/><i>Left Wall Follower</i></div>
+<div style="text-align: center"><img src="https://raw.githubusercontent.com/tha7556/MazeSolver/master/Solutions/gifs/rightMed.gif" style="width:250px;"><br/><i>Right Wall Follower</i>></div>
+<h4>Manhattan Distance Runner</h4>
+<p>This runner was given a bit more information than the others, probably resulting in an unfair advantage.
+    This runner knows the coordinates of the end of the maze, just not the path to it.
+    Whenever it encounters a junction, it calculates how far each choice is from the goal and picks the one with shortest distance.
+    Similarly to the Junction Origination, if it hits a dead end it backtracks to the last junction. 
+</p>
+<div style="text-align: center"><img src="https://raw.githubusercontent.com/tha7556/MazeSolver/master/Solutions/gifs/robertMed.gif" style="width:250px;"></div>
+<h4>Results</h4>
+<p>Results were measured by comparing the number of steps taken by each of the runners on the same maze.
+    <img src="../../assets/Maze Solver.png" style="width: 100%">
+    As you can see above, the Manhattan Distance runner performs the best almost everytime, as expected.
+    The Junction Origination is pretty random. In some cases it gets the correct path immediately, other cases the correct path is the last one that it tries. 
+    The left and right Wall Followers are always the inverse of each other, because they make opposite decisions from each other in every situation.
+</p>
+<h4>Bonus</h4>
+<div style="text-align: center"><img src="https://raw.githubusercontent.com/tha7556/MazeSolver/master/Solutions/gifs/joSlowCrazy.gif" style="width:250px;"><br><i>Junction Origination Worst Case on a Crazy size Maze</i></div>
+<br/>
+<div style="text-align: center"><img src="https://raw.githubusercontent.com/tha7556/MazeSolver/master/Solutions/gifs/robertCrazy.gif" style="width:250px;"><br><i>Manhattan Distance on a Crazy size Maze</i></div>
+<h4>Source</h4>
+<p>Here is the source for this project: <a href="https://github.com/tha7556/MazeSolver">[source]</a>.
+</p>

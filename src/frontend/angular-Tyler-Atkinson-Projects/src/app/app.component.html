@@ -12,12 +12,13 @@
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      <a #welcomeButton class="navbar-brand myLink" (click)="pageManager.setIndex(3)">Tyler Atkinson</a></div>
+      <a #welcomeButton class="navbar-brand myLink" (click)="pageManager.setIndex(4)">Tyler Atkinson</a></div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li #aboutButton class="active"><a class="myLink" (click)="pageManager.setIndex(0)">About</a></li>
         <li #contactButton class="inactive"><a class="myLink" (click)="pageManager.setIndex(1)">Contact</a></li>
         <li #projectButton class="inactive"><a class="myLink" (click)="pageManager.setIndex(2); pageManager.projectIndex = -1;">Projects</a></li>
+        <li #resumeButton class="inactive"><a class="myLink" (click)="pageManager.setIndex(3);">Resume</a></li>
       </ul>
     </div>
   </div>
@@ -40,7 +41,14 @@
 <div class="container" *ngIf="pageManager.index === 2">
     <app-project-list></app-project-list>
 </div>
-<div class="container" *ngIf="pageManager.index === 3">
+<div class="container" *ngIf="pageManager.index === 3" style="height: 100%;">
+    <object data="../../assets/Tyler Atkinson Resume.pdf" type="application/pdf" width="100%" height="100%" style="min-height: 1000px">
+      <embed src="../../assets/Tyler Atkinson Resume.pdf" type="application/pdf">
+          <p>This browser does not support PDFs. Please download the PDF to view it: <a href="../../assets/Tyler Atkinson Resume.pdf">Download PDF</a>.</p>
+  </object>
+  <!-- <iframe src="../../assets/Tyler Atkinson Resume.pdf" width="100%" height="100%" style="min-height: 1000px;"></iframe> -->
+</div>
+<div class="container" *ngIf="pageManager.index === 4">
     <app-welcome></app-welcome>
 </div>
 
@@ -51,10 +59,11 @@
 		<table class="table text-centered">
 		<tbody>
 		<tr>
-			<th><a (click)="pageManager.setIndex(3)" class="myLink">Home</a></th>
+			<th><a (click)="pageManager.setIndex(4)" class="myLink">Home</a></th>
       <th><a (click)="pageManager.setIndex(0)" class="myLink">About</a></th>
       <th><a (click)="pageManager.setIndex(1)" class="myLink">Contact</a></th>
-			<th><a (click)="pageManager.setIndex(2)" class="myLink">Projects</a></th>
+      <th><a (click)="pageManager.setIndex(2)" class="myLink">Projects</a></th>
+      <th><a (click)="pageManager.setIndex(3)" class="myLink">Resume</a></th>
 		</tr>	
 		</tbody>
 	  </table>

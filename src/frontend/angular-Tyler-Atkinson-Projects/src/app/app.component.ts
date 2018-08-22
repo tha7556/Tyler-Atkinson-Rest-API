@@ -14,13 +14,15 @@ export class AppComponent implements ErrorHandler, OnInit {
   @ViewChild('aboutButton') about: ElementRef;
   @ViewChild('contactButton') contact: ElementRef;
   @ViewChild('projectButton') project: ElementRef;
+  @ViewChild('resumeButton') resume: ElementRef;
   private navElements: ElementRef[];
   constructor(public pageManager: PageManagerService, private web: WebService) {}
   ngOnInit() {
-    this.navElements = [this.about, this.contact, this.project];
+    this.navElements = [this.about, this.contact, this.project, this.resume];
     this.pageManager.setElements(this.navElements);
-    this.pageManager.setIndex(3);
-    this.web.checkStatus().subscribe(result => console.log(result), err => console.log(err));
+    this.pageManager.setIndex(4);
+    this.web.checkStatus().subscribe(result => console.log('Connected to Server'),
+    err => console.log('Unable to establish connection with the rest api'));
   }
   handleError(error: any) {
     if (error.status === 0) {

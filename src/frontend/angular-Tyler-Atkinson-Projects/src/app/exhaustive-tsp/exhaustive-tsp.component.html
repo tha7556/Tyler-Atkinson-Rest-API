@@ -1,0 +1,43 @@
+<h2>Exhaustive Traveling Salesman</h2>
+<h3>Background</h3>
+<p>As mentioned in the <a class="myLink" (click)="pageManager.setProjectIndex(3)">previous Traveling Salesman page</a>, the Traveling Salesman problem is an optimization excercise to find the shortest round trip between x cities.
+  There are (x-1)! potential routes, meaning that for 14 cities there are 6,227,020,800 possible routes.
+  Most methods for solving this problem do their best to find the shortest route without having to evaluate all of these routes.
+  My teacher wanted us to implement exhaustive search, meaning that we do evaluate every possible route, to demonstrate how the difficulty of Traveling Salesman increases exponentially.
+</p>
+<h3>Implementation</h3>
+<h4>Original</h4>
+<p>I originally implemented this assignment in Java, because I had already implemented two other methods of solving Traveling Salesman and could use them as a base.
+  Once I had figured out the algorithm to create each route, the implementation was very quick.
+  My teacher required us to use 14 cities for this assignment and had warned us that it could take some time to run.
+  Mine was one of the quicker ones in the class, only running for 2-3 hours.
+</p>
+<h4>Remake</h4>
+<p>After I graduated, I wanted to improve my skills with C. 
+  The C language is renowned for its speed and power, so I thought that it would be perfect to optimize this project.
+  I began with just translating the Java into C, trying to make them perform the same.
+  Then once it was, I began my optimizations.
+</p>
+<h5><b>Optimizations</b></h5>
+<p>One of the benefits of C over Java is that it allows the use of pointers and passing by reference.
+  Java is only able to pass by value, meaning that everytime that a function is called, the parameters passed to it are actually copies of the original object.
+  Copying the values takes a large toll on performance.
+  C solves this with the ability to pass by reference, meaning that instead of a copy it passes a pointer that leads to the memory location of the original object.
+</p>
+<p>Another optimization I made was setting up a distance matrix.
+  Previously, distance of the routes was calculated during runtime.
+  To save time the distance matrix was created that stores all of the distances between each city.
+  Using this, during runtime instead of calculating the distance between each city, it just looks up the distances in the matrix.
+</p>
+<p>I further optimized it by modifying the recursive method that generates the routes.
+  Instead of generating multiple route objects, I changed it to modify the same route in place.
+  After fixing this, all objects used during runtime are generated at the start of the program.
+  This prevents the program from having to allocate memory once it begins going through each route.
+</p>
+<h5><b>Results</b></h5>
+<p>After performing these operations, the runtime dropped from 2-3 <b>hours</b> to 2-4 <b>minutes</b> for 14 cities.
+</p>
+<h4>Source</h4>
+<p>Here is the source for the original project: <a href="https://github.com/tha7556/Traveling-Salesman-Problem">[source]</a>.
+  <br/>And here is the source for the remake in C: <a href="https://github.com/tha7556/Traveling-Salesman-C">[source]</a>.
+</p>
