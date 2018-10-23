@@ -17,7 +17,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li #aboutButton class="active"><a class="myLink" [routerLink]="['about']" (click)="pageManager.setIndex(0)">About</a></li>
         <li #contactButton class="inactive"><a [routerLink]="['contact']" class="myLink" (click)="pageManager.setIndex(1)">Contact</a></li>
-        <li #projectButton class="inactive"><a [routerLink]="['projects']" class="myLink" (click)="pageManager.setIndex(2); pageManager.projectIndex = -1;">Projects</a></li>
+        <li #projectButton class="inactive"><a [routerLink]="['projects']" class="myLink" (click)="pageManager.setIndex(2)">Projects</a></li>
         <li #resumeButton class="inactive"><a href="../../assets/Tyler Atkinson Resume.pdf" class="myLink">Resume</a></li>
       </ul>
     </div>
