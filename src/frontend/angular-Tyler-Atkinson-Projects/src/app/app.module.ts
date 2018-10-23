@@ -19,6 +19,7 @@ import { ExhaustiveTspComponent } from './exhaustive-tsp/exhaustive-tsp.componen
 import { MazeSolverComponent } from './maze-solver/maze-solver.component';
 import { SortingComponent } from './sorting/sorting.component';
 import { WebsiteComponent } from './website/website.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const appRoutes: Routes = [
   {path: 'contact', component: ContactComponent},
@@ -32,8 +33,8 @@ const appRoutes: Routes = [
   {path: 'projects/sorting', component: SortingComponent},
   {path: 'projects', component: ProjectListComponent},
   {path: 'about', component: AboutComponent},
-  {path: '', component: WelcomeComponent}];
-  // {path: '**', component: NotFoundComponent }]; //TODO: Add 404 page
+  {path: '', component: WelcomeComponent},
+  {path: '**', component: NotFoundComponent }];
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ const appRoutes: Routes = [
     MazeSolverComponent,
     SortingComponent,
     WebsiteComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
