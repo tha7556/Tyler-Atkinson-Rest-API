@@ -13,17 +13,25 @@ import { MatrixComponent } from './matrix/matrix.component';
 import { TSPComponent } from './tsp/tsp.component';
 import { AboutComponent } from './about/about.component';
 import { ProjectListComponent } from './project-list/project-list.component';
-import { AppRoutingModule } from './/app-routing.module';
 import { ContactComponent } from './contact/contact.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ExhaustiveTspComponent } from './exhaustive-tsp/exhaustive-tsp.component';
 import { MazeSolverComponent } from './maze-solver/maze-solver.component';
-import { WorkoutComponent } from './workout/workout.component';
 import { SortingComponent } from './sorting/sorting.component';
-import { PcHawkComponent } from './pc-hawk/pc-hawk.component';
 import { WebsiteComponent } from './website/website.component';
 
 const appRoutes: Routes = [
+  {path: 'contact', component: ContactComponent},
+  {path: 'projects/backpropagation', component: BackpropagationNetworkComponent},
+  {path: 'projects/markov', component: MarkovComponent},
+  {path: 'projects/matrix', component: MatrixComponent},
+  {path: 'projects/salesman', component: TSPComponent},
+  {path: 'projects/exhausted_salesman', component: ExhaustiveTspComponent},
+  {path: 'projects/maze', component: MazeSolverComponent},
+  {path: 'projects/portfolio', component: WebsiteComponent},
+  {path: 'projects', component: ProjectListComponent},
+  {path: 'about', component: AboutComponent},
+  {path: '', component: WelcomeComponent},
   {path: '**', component: AppComponent }];
 
 @NgModule({
@@ -40,9 +48,7 @@ const appRoutes: Routes = [
     WelcomeComponent,
     ExhaustiveTspComponent,
     MazeSolverComponent,
-    WorkoutComponent,
     SortingComponent,
-    PcHawkComponent,
     WebsiteComponent
   ],
   imports: [
@@ -50,7 +56,6 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    AppRoutingModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [{provide: ErrorHandler, useClass: AppComponent}],
