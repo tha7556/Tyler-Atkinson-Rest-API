@@ -7,10 +7,9 @@ import { PageManagerService } from '../page-manager.service';
   styleUrls: ['./project-list.component.css']
 })
 export class ProjectListComponent implements OnInit {
-  constructor(public pageManager: PageManagerService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.pageManager.projectIndex = -1;
   }
 
 }

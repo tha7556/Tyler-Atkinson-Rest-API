@@ -3,7 +3,7 @@
   You can view the source code <a href="https://github.com/tha7556/Tyler-Atkinson-Rest-API">here</a>.
   
 </p>
-<h3><a class="myLink" (click)="pageManager.setIndex(0)">About</a></h3>
+<h3><a [routerLink]="['about']" class="myLink" (click)="pageManager.setIndex(0)">About</a></h3>
 <p>I began my programming journey in my high school robotics class, where we programmed robots to drive around and pick up objects using a Java-esque language.
   Based on a mentor's recommendation, I continued to pursue a new-found coding passion in AP Computer Science, where the basics of Object-Oriented Design and Java were introduced.
   I continued on to study Computer Science at the University of North Carolina Wilmington where I worked with Java, Python,
@@ -11,12 +11,12 @@
   After graduating I was hired by Qualitest as a Quality Assurance Engineer where I used Java, Selinium, and other testing frameworks to test websites and web APIs.
 </p>
 <a href="../../assets/Tyler Atkinson Resume.pdf">Click here to view my resume</a>
-<h3><a class="myLink" (click)="pageManager.setIndex(2)">Projects</a></h3>
+<h3><a [routerLink]="['projects']" class="myLink" (click)="pageManager.setIndex(2)">Projects</a></h3>
 <p>I have worked on a number of projects, both for school and for my own personal use. 
   These projects include Artificial Intelligence, Scientific Computing, and a variety of others.
   In the Projects page of this site, there is detailed descriptions for some as well as runnable demonstrations.
   You can also look on my <a href="https://github.com/tha7556">GitHub</a> to see projects not listed on here as well as the ones that are on here.
 </p>
-<h3><a class="myLink" (click)="pageManager.setIndex(1)">Contact</a></h3>
+<h3><a [routerLink]="['contact']" class="myLink" (click)="pageManager.setIndex(1)">Contact</a></h3>
 Please contact me if you think that I would be a good fit on your team or if you have any questions about anything on this site. 
 Contact details can be found on the Contacts page of this site.
