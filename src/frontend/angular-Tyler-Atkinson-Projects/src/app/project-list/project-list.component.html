@@ -1,29 +1,28 @@
-<div class="container" *ngIf="pageManager.projectIndex === -1">
   <h2>Runnable Projects</h2>
   <p>Below are various projects of mine that I have modified to run on a Java Spring server. This site is able to run them through a REST API.</p>
 
-  <h3><a [routerLink]="['./backpropagation']" (click)="pageManager.setProjectIndex(0)" class="myLink">Neural Network: Backpropagation</a></h3>
+  <h3><a [routerLink]="['./backpropagation']" class="myLink">Neural Network: Backpropagation</a></h3>
   <p>A Project for CSC 415: Artificial Intelligence. Implementation includes a Neural Network trained through Backpropagation
     to learn logic tables in Java. You can learn more about Backpropagation
     <a href="http://neuralnetworksanddeeplearning.com/chap2.html">here</a>, and you can experiment with my implementation in Java
-    <a [routerLink]="['./backpropagation']" (click)="pageManager.setProjectIndex(0)" class="myLink">here</a>. 
+    <a [routerLink]="['./backpropagation']" class="myLink">here</a>. 
   </p>
 
-  <h3><a [routerLink]="['./markov']" (click)="pageManager.setProjectIndex(1)" class="myLink">Tweet Generator: Markov Chains</a></h3>
+  <h3><a [routerLink]="['./markov']" class="myLink">Tweet Generator: Markov Chains</a></h3>
   <p>A Project for CSC 415: Artificial Intelligence. Implementation includes using Markov Chains to access the Twitter API and
     study a users tweets. After the Markov Chain is finished analyzing the tweets, it is able to generate tweets that are similar
     to the given user. You can learn more about Markov Chains
     <a href="https://www.datacamp.com/community/tutorials/markov-chains-python-tutorial">here</a>, and you can experiment with my implementation in Java
-    <a [routerLink]="['./markov']" (click)="pageManager.setProjectIndex(1)" class="myLink">here</a>.
+    <a [routerLink]="['./markov']" class="myLink">here</a>.
   </p>
 
-  <h3><a [routerLink]="['./matrix']" (click)="pageManager.setProjectIndex(2)" class="myLink">Matricies</a></h3>
+  <h3><a [routerLink]="['./matrix']" class="myLink">Matricies</a></h3>
   <p>A Project for CSC 340: Scientific Computing. Contains various methods used to work with Matricies. Utilized for most of my
     projects in this class. You can experiment with my implementation in Java
-    <a [routerLink]="['./matrix']" (click)="pageManager.setProjectIndex(2)" class="myLink">here</a>.
+    <a [routerLink]="['./matrix']" class="myLink">here</a>.
   </p>
 
-  <h3><a [routerLink]="['./salesman']" (click)="pageManager.setProjectIndex(3)" class="myLink">Traveling Salesman</a></h3>
+  <h3><a [routerLink]="['./salesman']" class="myLink">Traveling Salesman</a></h3>
   <p>A Project for CSC 340: Scientific Computing. Used two different methods for solving the classic Traveling Salesman Problem
     in Java.
   </p>
@@ -40,36 +39,32 @@
     <a href="https://en.wikipedia.org/wiki/Simulated_annealing">here</a>.
   </p>
   <p>You can experiment with the two implementations
-    <a [routerLink]="['./salesman']" (click)="pageManager.setProjectIndex(3)" class="myLink">here</a>.
+    <a [routerLink]="['./salesman']" class="myLink">here</a>.
   </p>
 
   <h2>Non-Runnable Projects</h2>
   <p>Below are some of my other projects which are unable to be run through the REST API.
   </p>
 
-  <h3><a [routerLink]="['./exhausted_salesman']" (click)="pageManager.setProjectIndex(4)" class="myLink">Exhaustive Traveling Salesman</a></h3>
+  <h3><a [routerLink]="['./exhausted_salesman']" class="myLink">Exhaustive Traveling Salesman</a></h3>
   <p>Still a part of the same CSC 340: Scientific Computing project as above.
     However, instead of trying to find a clever way of of solving Traveling Salesman, the best route was realized by locating every possible instance.
-    You can read more about my work on this project <a [routerLink]="['./exhausted_salesman']" (click)="pageManager.setProjectIndex(4)" class="myLink">here</a>.
+    You can read more about my work on this project <a [routerLink]="['./exhausted_salesman']" class="myLink">here</a>.
   </p>
 
-  <h3><a [routerLink]="['./maze']" (click)="pageManager.setProjectIndex(5)" class="myLink">Maze Solver</a></h3>
+  <h3><a [routerLink]="['./maze']" class="myLink">Maze Solver</a></h3>
   <p>A Project for CSC 380: Algorithms.
     Used three different methods for finding a path through the provided mazes. 
-    You can read more about my work on this project <a [routerLink]="['./maze']" (click)="pageManager.setProjectIndex(5)" class="myLink">here</a>.
+    You can read more about my work on this project <a [routerLink]="['./maze']" class="myLink">here</a>.
   </p>
 
-  <h3><a [routerLink]="['./sorting']" (click)="pageManager.setProjectIndex(7)" class="myLink">Sorting Visualizations</a></h3>
+  <h3><a [routerLink]="['./sorting']" class="myLink">Sorting Visualizations</a></h3>
   <p>Various sorting algorithms implemented in Java with the ability to visualize them during runtime.
-    You can read more about my work on this project <a [routerLink]="['./sorting']" (click)="pageManager.setProjectIndex(7)" class="myLink">here</a>.
+    You can read more about my work on this project <a [routerLink]="['./sorting']" class="myLink">here</a>.
   </p>
 
-  <h3><a [routerLink]="['./portfolio']" (click)="pageManager.setProjectIndex(9)" class="myLink">Portfolio Website</a></h3>
+  <h3><a [routerLink]="['./portfolio']" class="myLink">Portfolio Website</a></h3>
   <p>The website that you are currently on, designed to showcase my projects as well as get experience working with frontend technologies.
-    You can read more about my work on this project <a [routerLink]="['./portfolio']" (click)="pageManager.setProjectIndex(9)" class="myLink">here</a>.
+    You can read more about my work on this project <a [routerLink]="['./portfolio']" class="myLink">here</a>.
   </p>
 
-
-
-
-</div>
