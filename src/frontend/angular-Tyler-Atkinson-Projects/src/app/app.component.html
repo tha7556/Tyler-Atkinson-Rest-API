@@ -18,7 +18,7 @@
         <li #aboutButton class="active"><a class="myLink" [routerLink]="['about']" (click)="pageManager.setIndex(0)">About</a></li>
         <li #contactButton class="inactive"><a [routerLink]="['contact']" class="myLink" (click)="pageManager.setIndex(1)">Contact</a></li>
         <li #projectButton class="inactive"><a [routerLink]="['projects']" class="myLink" (click)="pageManager.setIndex(2); pageManager.projectIndex = -1;">Projects</a></li>
-        <li #resumeButton class="inactive"><a [routerLink]="['resume']" class="myLink" (click)="pageManager.setIndex(3);">Resume</a></li>
+        <li #resumeButton class="inactive"><a href="../../assets/Tyler Atkinson Resume.pdf" class="myLink">Resume</a></li>
       </ul>
     </div>
   </div>
@@ -46,7 +46,7 @@
       <th><a [routerLink]="['about']" (click)="pageManager.setIndex(0)" class="myLink">About</a></th>
       <th><a [routerLink]="['contact']" (click)="pageManager.setIndex(1)" class="myLink">Contact</a></th>
       <th><a [routerLink]="['projects']" (click)="pageManager.setIndex(2)" class="myLink">Projects</a></th>
-      <th><a [routerLink]="['resume']" (click)="pageManager.setIndex(3)" class="myLink">Resume</a></th>
+      <th><a href="../../assets/Tyler Atkinson Resume.pdf" class="myLink">Resume</a></th>
 		</tr>	
 		</tbody>
 	  </table>
